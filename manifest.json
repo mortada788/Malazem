@@ -1,0 +1,17 @@
+{
+  "name": "ملازم خامس علمي",
+  "short_name": "ملازم",
+  "description": "ملخصات وملازم الخامس العلمي",
+  "lang": "ar",
+  "dir": "rtl",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#1a73e8",
+  "theme_color": "#1a73e8",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}

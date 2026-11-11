@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#1a73e8">
+<title>ملازم خامس علمي</title>
+<style>
+:root{--bg:#f4f6fb;--card:#fff;--text:#1d2433;--muted:#667085;--primary:#1a73e8;--border:#e3e7ef}
+@media (prefers-color-scheme:dark){:root{--bg:#10141c;--card:#1a202c;--text:#eef1f6;--muted:#9aa4b5;--border:#2a3242}}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;font-family:system-ui,"Segoe UI",Tahoma,sans-serif;background:var(--bg);color:var(--text);line-height:1.7}
+header{background:var(--primary);color:#fff;padding:14px 16px;position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:10px}
+header h1{font-size:18px;margin:0;flex:1}
+#back{background:none;border:0;color:#fff;font-size:24px;display:none;padding:0 4px}
+main{padding:16px;max-width:720px;margin:auto}
+input[type=search]{width:100%;padding:12px 14px;border-radius:12px;border:1px solid var(--border);background:var(--card);color:var(--text);font-size:16px;margin-bottom:14px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.subject{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px 10px;text-align:center;cursor:pointer;border-top:4px solid var(--c)}
+.subject .ic{font-size:34px}
+.subject b{display:block;margin-top:4px}
+.subject small{color:var(--muted)}
+.tabs{display:flex;gap:8px;margin-bottom:14px}
+.tab{flex:1;padding:10px;border-radius:10px;border:1px solid var(--border);background:var(--card);color:var(--text);font-size:15px}
+.tab.on{background:var(--primary);color:#fff;border-color:var(--primary)}
+.card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:14px;margin-bottom:12px}
+.card h3{margin:0 0 6px;font-size:16px}
+.card p{margin:0;white-space:pre-wrap}
+.meta{color:var(--muted);font-size:13px;margin-bottom:8px}
+.btn{display:inline-block;background:var(--primary);color:#fff;text-decoration:none;padding:9px 16px;border-radius:10px;font-size:14px}
+.chips{display:flex;gap:6px;overflow-x:auto;margin-bottom:12px;padding-bottom:4px}
+.chip{white-space:nowrap;padding:6px 12px;border-radius:20px;border:1px solid var(--border);background:var(--card);color:var(--text);font-size:13px}
+.chip.on{background:var(--primary);color:#fff;border-color:var(--primary)}
+.empty{text-align:center;color:var(--muted);padding:30px 0}
+footer{text-align:center;color:var(--muted);font-size:12px;padding:20px}
+</style>
+</head>
+<body>
+<header>
+  <button id="back" aria-label="رجوع">›</button>
+  <h1 id="title">ملازم خامس علمي</h1>
+</header>
+<main id="app"></main>
+<footer>الملازم مرفوعة بإذن أصحابها</footer>
+
+<script>
+/* ============================================================
+   هنا تضيف محتواك. عدّل هذا الجزء فقط.
+   - summaries: الملخصات (عنوان + نص)
+   - handouts: الملازم (عنوان + اسم الأستاذ + رابط PDF)
+   رابط الملزمة: ارفع الـ PDF على Google Drive، خله "أي شخص لديه الرابط"،
+   وانسخ الرابط هنا.
+   ============================================================ */
+const DATA = [
+  {
+    id:"physics", name:"الفيزياء", icon:"⚛️", color:"#1a73e8",
+    summaries:[
+      {title:" مثال: قانون نيوتن ", text:"هذا نص تجريبي. امسحه واكتب ملخصك هنا."}
+    ],
+    handouts:[
+      {title:"مثال: ملزمة الفصل الأول", teacher:"اسم الأستاذ", url:"https://drive.google.com/"}
+    ]
+  },
+  {
+    id:"chemistry", name:"الكيمياء", icon:"🧪", color:"#0f9d58",
+    summaries:[], handouts:[]
+  },
+  {
+    id:"biology", name:"الأحياء", icon:"🧬", color:"#e8710a",
+    summaries:[], handouts:[]
+  },
+  {
+    id:"math", name:"الرياضيات", icon:"📐", color:"#9334e6",
+    summaries:[], handouts:[]
+  },
+  {
+    id:"arabic", name:"اللغة العربية", icon:"📖", color:"#c5221f",
+    summaries:[], handouts:[]
+  },
+  {
+    id:"english", name:"اللغة الإنكليزية", icon:"🔤", color:"#00838f",
+    summaries:[], handouts:[]
+  },
+  {
+    id:"islamic", name:"التربية الإسلامية", icon:"🕌", color:"#5f6368",
+    summaries:[], handouts:[]
+  }
+];
+/* ================= نهاية الجزء الخاص بالمحتوى ================= */
+
+const app = document.getElementById('app');
+const titleEl = document.getElementById('title');
+const backBtn = document.getElementById('back');
+let tab = 'summaries', teacher = 'الكل', query = '';
+
+const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const safeUrl = u => /^https?:\/\//i.test(u) ? u : '#';
+
+function route(){
+  const id = location.hash.slice(1);
+  const sub = DATA.find(s => s.id === id);
+  sub ? showSubject(sub) : showHome();
+}
+
+function showHome(){
+  titleEl.textContent = 'ملازم خامس علمي';
+  backBtn.style.display = 'none';
+  const q = query.trim();
+  let html = `<input type="search" id="q" placeholder="ابحث عن ملخص أو ملزمة أو أستاذ..." value="${esc(query)}">`;
+  if(q){
+    const hits = [];
+    DATA.forEach(s=>{
+      s.summaries.forEach(x=>{ if((x.title+x.text).includes(q)) hits.push({s,kind:'ملخص',x}); });
+      s.handouts.forEach(x=>{ if((x.title+x.teacher).includes(q)) hits.push({s,kind:'ملزمة',x}); });
+    });
+    html += hits.length ? hits.map(h=>`<div class="card" onclick="location.hash='${h.s.id}'"><div class="meta">${esc(h.s.name)} • ${h.kind}</div><h3>${esc(h.x.title)}</h3></div>`).join('')
+                        : '<div class="empty">ما لقيت نتائج</div>';
+  } else {
+    html += '<div class="grid">' + DATA.map(s=>`
+      <div class="subject" style="--c:${s.color}" onclick="location.hash='${s.id}'">
+        <div class="ic">${s.icon}</div><b>${esc(s.name)}</b>
+        <small>${s.summaries.length} ملخص • ${s.handouts.length} ملزمة</small>
+      </div>`).join('') + '</div>';
+  }
+  app.innerHTML = html;
+  const qi = document.getElementById('q');
+  qi.addEventListener('input', e=>{ query = e.target.value; const pos=qi.selectionStart; showHome(); const n=document.getElementById('q'); n.focus(); n.setSelectionRange(pos,pos); });
+}
+
+function showSubject(s){
+  titleEl.textContent = s.name;
+  backBtn.style.display = 'block';
+  let html = `<div class="tabs">
+    <button class="tab ${tab==='summaries'?'on':''}" data-t="summaries">الملخصات</button>
+    <button class="tab ${tab==='handouts'?'on':''}" data-t="handouts">الملازم</button></div>`;
+  if(tab==='summaries'){
+    html += s.summaries.length ? s.summaries.map(x=>`<div class="card"><h3>${esc(x.title)}</h3><p>${esc(x.text)}</p></div>`).join('')
+                               : '<div class="empty">ما كو ملخصات بعد</div>';
+  } else {
+    const teachers = ['الكل', ...new Set(s.handouts.map(h=>h.teacher))];
+    if(teachers.length>2){
+      html += '<div class="chips">' + teachers.map(t=>`<button class="chip ${t===teacher?'on':''}" data-te="${esc(t)}">${esc(t)}</button>`).join('') + '</div>';
+    }
+    const list = s.handouts.filter(h => teacher==='الكل' || h.teacher===teacher);
+    html += list.length ? list.map(h=>`<div class="card"><h3>${esc(h.title)}</h3><div class="meta">الأستاذ: ${esc(h.teacher)}</div><a class="btn" href="${esc(safeUrl(h.url))}" target="_blank" rel="noopener">فتح / تحميل</a></div>`).join('')
+                        : '<div class="empty">ما كو ملازم بعد</div>';
+  }
+  app.innerHTML = html;
+  app.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{tab=b.dataset.t;teacher='الكل';showSubject(s);});
+  app.querySelectorAll('.chip').forEach(b=>b.onclick=()=>{teacher=b.dataset.te;showSubject(s);});
+}
+
+backBtn.onclick = () => history.back();
+window.addEventListener('hashchange', route);
+route();
+</script>
+</body>
+</html>
