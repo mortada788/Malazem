@@ -1,172 +1,154 @@
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="theme-color" content="#1a73e8">
 <title>ملازم خامس علمي</title>
 <style>
-:root{
-  --bg:#eef4fa;
-  --card:rgba(255, 255, 255, 0.94);
-  --text:#1d2433;
-  --muted:#667085;
-  --primary:#1a73e8;
-  --border:#dce4f0;
-}
-@media (prefers-color-scheme:dark){
-  :root{
-    --bg:#0f141e;
-    --card:rgba(26, 32, 44, 0.94);
-    --text:#eef1f6;
-    --muted:#9aa4b5;
-    --border:#2a3242;
+  :root{--bg:#f4f6fb;--card:#fff;--text:#1d2433;--muted:#64748b;--primary:#1a73e8;--line:#e2e8f0;--radius:16px}
+  @media (prefers-color-scheme: dark){:root{--bg:#0f172a;--card:#1e293b;--text:#f1f5f9;--muted:#94a3b8;--line:#334155}}
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  body{margin:0;font-family:system-ui,"Segoe UI",Tahoma,Arial,sans-serif;background:var(--bg);color:var(--text);padding-bottom:20px}
+  header{background:var(--primary);color:#fff;padding:16px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:50;box-shadow:0 2px 10px rgba(0,0,0,.1)}
+  header h1{font-size:18px;margin:0;flex:1}
+  #back{background:none;border:0;color:#fff;font-size:22px;cursor:pointer;padding:0 5px;display:none}
+  main{padding:16px;max-width:720px;margin:auto}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .subject{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;cursor:pointer;transition:transform .2s,box-shadow .2s}
+  .subject:active{transform:scale(.97)}
+  .sub-banner{background:var(--c);color:#fff;height:70px;display:flex;align-items:center;justify-content:center;font-size:36px}
+  .sub-info{padding:12px}
+  .sub-info b{display:block;font-size:15px;margin-bottom:4px}
+  .sub-info small{color:var(--muted);font-size:12px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px;margin-bottom:12px}
+  .card h3{margin:0 0 8px;font-size:16px}
+  .meta{color:var(--muted);font-size:13px;margin:8px 0 12px}
+  .btn{display:block;text-align:center;background:var(--primary);color:#fff;padding:10px;border-radius:10px;text-decoration:none;font-weight:bold;margin-top:10px}
+  .empty{text-align:center;color:var(--muted);padding:40px;font-size:15px}
+  .chips{display:flex;gap:8px;overflow-x:auto;padding-bottom:10px;margin-bottom:10px}
+  .chip{white-space:nowrap;padding:6px 14px;border-radius:20px;border:1px solid var(--line);background:var(--card);color:var(--text);cursor:pointer}
+  .chip.on{background:var(--primary);color:#fff;border-color:var(--primary)}
+
+  /* ستايل شاشة الترحيب */
+  #splash-screen {
+      position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+      background: linear-gradient(to right, #24243e, #302b63, #0f0c29);
+      display: flex; justify-content: center; align-items: center;
+      z-index: 9999; overflow: hidden; transition: opacity 0.8s ease, visibility 0.8s ease;
   }
-}
-*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-body{
-  margin:0;
-  font-family:system-ui,"Segoe UI",Tahoma,sans-serif;
-  background-color:var(--bg);
-  background-image: url("data:image/svg+xml,%3Csvg width='140' height='140' viewBox='0 0 140 140' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%236082b6' stroke-width='1.5' stroke-opacity='0.14'%3E%3Ccircle cx='30' cy='30' r='12'/%3E%3Cellipse cx='30' cy='30' rx='22' ry='7' transform='rotate(30 30 30)'/%3E%3Cellipse cx='30' cy='30' rx='22' ry='7' transform='rotate(-30 30 30)'/%3E%3Cpath d='M95 15 L105 15 L105 28 L115 45 L85 45 L95 28 Z'/%3E%3Cpolygon points='30,90 48,120 12,120'/%3E%3Cpath d='M85 95 Q100 88 115 95 L115 120 Q100 113 85 120 Z M100 92 L100 117'/%3E%3Ccircle cx='70' cy='70' r='3'/%3E%3C/g%3E%3C/svg%3E");
-  color:var(--text);
-  line-height:1.7;
-  min-height:100vh;
-  display:flex;
-  flex-direction:column;
-}
-header{background:var(--primary);color:#fff;padding:14px 16px;position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:10px;box-shadow:0 2px 10px rgba(0,0,0,0.1)}
-header h1{font-size:18px;margin:0;flex:1}
-#back{background:none;border:0;color:#fff;font-size:24px;display:none;padding:0 4px;cursor:pointer}
-main{padding:16px;max-width:720px;margin:auto;width:100%;flex:1}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-
-.subject{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:18px;
-  overflow:hidden;
-  text-align:center;
-  cursor:pointer;
-  border-top:5px solid var(--c);
-  box-shadow:0 4px 12px rgba(0,0,0,0.05);
-  transition:transform 0.15s ease, box-shadow 0.15s ease;
-  display:flex;
-  flex-direction:column;
-}
-.subject:active{transform:scale(0.97)}
-.sub-banner{
-  width:100%;
-  height:92px;
-  background:linear-gradient(135deg, color-mix(in srgb, var(--c) 14%, transparent), color-mix(in srgb, var(--c) 4%, transparent));
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:10px;
-  border-bottom:1px solid var(--border);
-}
-.sub-banner svg{
-  width:68px;
-  height:68px;
-  filter:drop-shadow(0 3px 5px rgba(0,0,0,0.08));
-}
-.sub-info{padding:12px 10px}
-.subject b{display:block;font-size:16px;margin-bottom:2px}
-.subject small{color:var(--muted);font-size:12.5px}
-
-.tabs{display:flex;gap:8px;margin-bottom:14px}
-.tab{flex:1;padding:10px;border-radius:10px;border:1px solid var(--border);background:var(--card);color:var(--text);font-size:15px;cursor:pointer}
-.tab.on{background:var(--primary);color:#fff;border-color:var(--primary);font-weight:bold}
-.card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:14px;margin-bottom:12px;box-shadow:0 2px 8px rgba(0,0,0,0.04)}
-.card h3{margin:0 0 6px;font-size:16px;color:var(--primary)}
-.card p{margin:0;white-space:pre-wrap}
-.meta{color:var(--muted);font-size:13px;margin-bottom:8px}
-.btn{display:inline-block;background:var(--primary);color:#fff;text-decoration:none;padding:9px 16px;border-radius:10px;font-size:14px;font-weight:500}
-.chips{display:flex;gap:6px;overflow-x:auto;margin-bottom:12px;padding-bottom:4px}
-.chip{white-space:nowrap;padding:6px 12px;border-radius:20px;border:1px solid var(--border);background:var(--card);color:var(--text);font-size:13px;cursor:pointer}
-.chip.on{background:var(--primary);color:#fff;border-color:var(--primary)}
-.empty{text-align:center;color:var(--muted);padding:30px 0;background:var(--card);border-radius:14px;border:1px dashed var(--border)}
-footer{text-align:center;color:var(--muted);font-size:12px;padding:24px 16px;font-weight:500;margin-top:auto}
+  #splash-screen::before, #splash-screen::after {
+      content: ''; position: absolute; border-radius: 50%; filter: blur(80px); z-index: -1;
+  }
+  #splash-screen::before {
+      width: 300px; height: 300px; background: rgba(138, 43, 226, 0.4);
+      top: -50px; right: -50px; animation: float 6s infinite alternate;
+  }
+  #splash-screen::after {
+      width: 400px; height: 400px; background: rgba(65, 105, 225, 0.3);
+      bottom: -100px; left: -100px; animation: float 8s infinite alternate-reverse;
+  }
+  .glass-container {
+      text-align: center; padding: 50px 30px; border-radius: 24px;
+      background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5); width: 85%; max-width: 350px;
+  }
+  .welcome-text {
+      font-family: system-ui, sans-serif; font-size: 36px; font-weight: 900; color: #fff;
+      margin-bottom: 35px; opacity: 0; transform: scale(0.5);
+      animation: popIn 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+      text-shadow: 0 4px 15px rgba(138, 43, 226, 0.5);
+  }
+  .loading-bar-container {
+      width: 100%; height: 6px; background: rgba(255, 255, 255, 0.1);
+      border-radius: 10px; overflow: hidden; opacity: 0; animation: fadeIn 0.5s ease-out 1s forwards;
+  }
+  .loading-bar {
+      width: 0%; height: 100%; background: linear-gradient(to right, #8a2be2, #4169e1);
+      border-radius: 10px; animation: fillBar 3.5s ease-in-out 1s forwards;
+  }
+  @keyframes popIn { 0% { opacity: 0; transform: scale(0.5); } 100% { opacity: 1; transform: scale(1); } }
+  @keyframes fadeIn { 0% { opacity: 0; } 100% { opacity: 1; } }
+  @keyframes fillBar { 0% { width: 0%; } 100% { width: 100%; } }
+  @keyframes float { 0% { transform: translateY(0) scale(1); } 100% { transform: translateY(30px) scale(1.1); } }
+  .splash-hidden { opacity: 0; visibility: hidden; }
 </style>
 </head>
 <body>
+
+<!-- شاشة الترحيب -->
+<div id="splash-screen">
+    <div class="glass-container">
+        <h1 class="welcome-text">أهلاً وسهلاً</h1>
+        <div class="loading-bar-container">
+            <div class="loading-bar"></div>
+        </div>
+    </div>
+</div>
+
+<!-- هيدر التطبيق -->
 <header>
-  <button id="back" aria-label="رجوع">›</button>
-  <h1 id="title">ملازم خامس علمي</h1>
+  <button id="back">↩</button>
+  <h1 id="title"></h1>
 </header>
+
 <main id="app"></main>
-<footer>تم صنع التطبيق بواسطة مرتضى واثق حساني</footer>
 
 <script>
-const ART = {
-  physics: `<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="10" fill="#1a73e8"/><ellipse cx="50" cy="50" rx="40" ry="14" fill="none" stroke="#1a73e8" stroke-width="3.5" transform="rotate(30 50 50)"/><ellipse cx="50" cy="50" rx="40" ry="14" fill="none" stroke="#4285f4" stroke-width="3.5" transform="rotate(-30 50 50)"/><ellipse cx="50" cy="50" rx="40" ry="14" fill="none" stroke="#0d47a1" stroke-width="3.5" transform="rotate(90 50 50)"/><circle cx="84" cy="30" r="4.5" fill="#ea4335"/><circle cx="16" cy="70" r="4.5" fill="#fbbc04"/></svg>`,
-  chemistry: `<svg viewBox="0 0 100 100"><path d="M40 18 H60 M44 18 V36 L24 76 C22 80 25 84 30 84 H70 C75 84 78 80 76 76 L56 36 V18" fill="none" stroke="#0f9d58" stroke-width="4" stroke-linejoin="round"/><path d="M31 64 L26 76 C25 78 27 81 30 81 H70 C73 81 75 78 74 76 L69 64 Z" fill="#34a853" opacity="0.8"/><circle cx="46" cy="72" r="3" fill="#fff"/><circle cx="56" cy="68" r="2.5" fill="#fff"/><circle cx="50" cy="10" r="3" fill="#0f9d58"/><circle cx="58" cy="7" r="2" fill="#34a853"/></svg>`,
-  biology: `<svg viewBox="0 0 100 100"><path d="M32 15 C32 40, 68 40, 68 50 C68 60, 32 60, 32 85" fill="none" stroke="#e8710a" stroke-width="4.5" stroke-linecap="round"/><path d="M68 15 C68 40, 32 40, 32 50 C32 60, 68 60, 68 85" fill="none" stroke="#fbbc04" stroke-width="4.5" stroke-linecap="round"/><line x1="36" y1="24" x2="64" y2="24" stroke="#e8710a" stroke-width="3"/><line x1="42" y1="36" x2="58" y2="36" stroke="#e8710a" stroke-width="3"/><line x1="42" y1="64" x2="58" y2="64" stroke="#e8710a" stroke-width="3"/><line x1="36" y1="76" x2="64" y2="76" stroke="#e8710a" stroke-width="3"/></svg>`,
-  math: `<svg viewBox="0 0 100 100"><polygon points="20,82 82,82 20,20" fill="#9334e6" opacity="0.18" stroke="#9334e6" stroke-width="4" stroke-linejoin="round"/><polygon points="30,72 56,72 30,46" fill="#fff" stroke="#9334e6" stroke-width="3"/><text x="62" y="42" font-family="serif" font-size="34" font-weight="bold" fill="#7b1fa2">π</text><line x1="20" y1="70" x2="26" y2="70" stroke="#9334e6" stroke-width="2.5"/><line x1="20" y1="58" x2="26" y2="58" stroke="#9334e6" stroke-width="2.5"/><line x1="20" y1="46" x2="26" y2="46" stroke="#9334e6" stroke-width="2.5"/></svg>`,
-  arabic: `<svg viewBox="0 0 100 100"><path d="M22 30 Q36 24 50 30 Q64 24 78 30 V74 Q64 68 50 74 Q36 68 22 74 Z" fill="#c5221f" opacity="0.15" stroke="#c5221f" stroke-width="3.5" stroke-linejoin="round"/><line x1="50" y1="30" x2="50" y2="74" stroke="#c5221f" stroke-width="3"/><path d="M62 62 L82 22 C74 22 66 30 62 44 Z" fill="#d93025"/><line x1="58" y1="68" x2="82" y2="22" stroke="#801313" stroke-width="2.5" stroke-linecap="round"/></svg>`,
-  english: `<svg viewBox="0 0 100 100"><rect x="18" y="24" width="64" height="52" rx="10" fill="#00838f" opacity="0.15" stroke="#00838f" stroke-width="3.5"/><text x="50" y="58" text-anchor="middle" font-family="sans-serif" font-size="26" font-weight="bold" fill="#006064">ABC</text><line x1="30" y1="67" x2="70" y2="67" stroke="#00838f" stroke-width="3" stroke-linecap="round"/></svg>`,
-  islamic: `<svg viewBox="0 0 100 100"><path d="M30 52 C30 34, 50 26, 50 18 C50 26, 70 34, 70 52 Z" fill="#5f6368" opacity="0.25" stroke="#455a64" stroke-width="3.5"/><rect x="26" y="52" width="48" height="30" rx="3" fill="#fff" stroke="#455a64" stroke-width="3.5"/><path d="M44 82 V66 C44 61, 56 61, 56 66 V82" fill="#455a64"/><path d="M50 10 A5 5 0 1 0 54 15 A4 4 0 1 1 50 10" fill="#f9ab00"/></svg>`
-};
+// شاشة الترحيب تختفي بعد 5 ثواني
+document.addEventListener("DOMContentLoaded", function() {
+    setTimeout(function() {
+        var splash = document.getElementById("splash-screen");
+        if (splash) {
+            splash.classList.add("splash-hidden");
+            setTimeout(function() { splash.remove(); }, 800); 
+        }
+    }, 5000); 
+});
+
+// بيانات التطبيق (بدون ملخصات)
+const ART = { physics:'⚛️', chemistry:'🧪', biology:'🧬', math:'📐', arabic:'📖', english:'🔤', islamic:'🕌' };
 
 const DATA = [
   {
     id:"physics", name:"الفيزياء", icon:"⚛️", color:"#1a73e8",
-    summaries:[
-      { title: "ملخص فصل الحركة الدائرية والدورانية", text: "• السرعة الزاوية: هي المعدل الزمني للتغير في الإزاحة الزاوية وتقاس بـ (rad/s).\n• التعجيل الزوائي: المعدل الزمني للتغير في السرعة الزاوية.\n• العزم المدور: هو مقدار القوة المسببة للدوران ويقاس بـ (N.m).\n• المركز العطالي ومركز الكتلة." }
-    ],
     handouts:[
-      { title: "ملزمة الفيزياء", teacher: "عام", url: "Https://teraboxlink.com/s/1_V07xgYMiJpqFzxz6I8COw" }
+      { title: "ملزمة الفيزياء", teacher: "عام", url: "https://teraboxlink.com/s/1_V07xgYMiJpqFzxz6I8COw" }
     ]
   },
   {
     id:"chemistry", name:"الكيمياء", icon:"🧪", color:"#0f9d58",
-    summaries:[
-      { title: "ملخص الثرموديناميك (الحرارة)", text: "• القانون الأول للثرموديناميك: الطاقة لا تفنى بل تستحدث وإنما تحول من شكل لآخر (ΔU = q + w).\n• الأنظام الكيميائية: النظام المفتوح، المغلق، والمعزول.\n• الحامض والقاعدة حسب مفاهيم برونستد-لوري وأرينيوس." }
-    ],
     handouts:[
-      { title: "ملزمة الكيمياء", teacher: "عام", url: "Https://teraboxlink.com/s/1Ji0HiDOscURHNU6eKHi8Bg" }
+      { title: "ملزمة الكيمياء", teacher: "عام", url: "https://teraboxlink.com/s/1Ji0HiDOscURHNU6eKHi8Bg" }
     ]
   },
   {
     id:"biology", name:"الأحياء", icon:"🧬", color:"#e8710a",
-    summaries:[
-      { title: "ملخص علم الوراثة والخلية", text: "• الانقسام الاختزالي: يحدث في الخلايا التناسلية وينتج عنه خلايا أحادية المجموعة الكروموسومية (1n).\n• الأحياء المجهرية: تصنيف البكتيريا والفطريات.\n• التنسج والنسيج الطلائي في النباتات والحيوانات." }
-    ],
     handouts:[
-      { title: "ملزمة الأحياء", teacher: "عام", url: "Https://teraboxlink.com/s/1_V07xgYMiJpqFzxz6I8COw" }
+      { title: "ملزمة الأحياء", teacher: "عام", url: "https://teraboxlink.com/s/1_V07xgYMiJpqFzxz6I8COw" }
     ]
   },
   {
     id:"math", name:"الرياضيات", icon:"📐", color:"#9334e6",
-    summaries:[
-      { title: "ملخص المتجهات والغايات والدوال", text: "• المتجهات في المستوي الإحداثي وقانون الضرب القيزي والاتجاهي.\n• الغايات والاستمرارية للدوال الحقيقية.\n• التفاضل ومشتقات الدوال المثلثية والضمنية." }
-    ], 
     handouts:[]
   },
   {
     id:"arabic", name:"اللغة العربية", icon:"📖", color:"#c5221f",
-    summaries:[
-      { title: "ملخص القواعد (الاستثناء والبلاغة)", text: "• الاستثناء بـ (إلا، غير، سوى، خلا، عدا، حاشا).\n• أحكام المستثنى بـ (إلا): تام مثبت، تام منفي، مفرغ.\n• علم البلاغة: الجناس، التورية، وحسن التخلص." }
-    ],
     handouts:[
-      { title: "ملزمة اللغة العربية", teacher: "عام", url: "Https://teraboxlink.com/s/1_V07xgYMiJpqFzxz6I8COw" }
+      { title: "ملزمة اللغة العربية", teacher: "عام", url: "https://teraboxlink.com/s/1_V07xgYMiJpqFzxz6I8COw" }
     ]
   },
   {
     id:"english", name:"اللغة الإنكليزية", icon:"🔤", color:"#00838f",
-    summaries:[
-      { title: "ملخص قواعد وأزمنة الوحدة الأولى والثانية", text: "• الماضي البسيط (Past Simple) والماضي المستمر (Past Continuous) مع أدوات الربط (while, as, when, and).\n• استخدام Prefixes لتكوين المعاكسات (un-, in-, im-, ir-, il-).\n• التعبير عن التفضيل والاقتراح (Let's, Why not, Would you like)." }
-    ],
     handouts:[
-      { title: "ملزمة اللغة الإنكليزية", teacher: "عام", url: "Https://teraboxlink.com/s/1aftxSaGzYGZe0FTPk3kV7g" }
+      { title: "ملزمة اللغة الإنكليزية", teacher: "عام", url: "https://teraboxlink.com/s/1aftxSaGzYGZe0FTPk3kV7g" }
     ]
   },
   {
     id:"islamic", name:"التربية الإسلامية", icon:"🕌", color:"#5f6368",
-    summaries:[
-      { title: "ملخص أحكام التجويد والحديث الشريف", text: "• أحكام النون السكنية والتنوين (الإظهار، الإدغام، الإقلاب، الإخفاء).\n• الحديث الشريف في (الحث على العمل وبر الوالدين).\n• العقيدة الإسلامية وأثرها في بناء المجتمع." }
-    ],
     handouts:[
-      { title: "ملزمة التربية الإسلامية", teacher: "عام", url: "Https://teraboxlink.com/s/1NVKe6ijJ6WoQs21T_Tf6kw" }
+      { title: "ملزمة التربية الإسلامية", teacher: "عام", url: "https://teraboxlink.com/s/1NVKe6ijJ6WoQs21T_Tf6kw" }
     ]
   }
 ];
@@ -174,7 +156,7 @@ const DATA = [
 const app = document.getElementById('app');
 const titleEl = document.getElementById('title');
 const backBtn = document.getElementById('back');
-let tab = 'summaries', teacher = 'الكل';
+let teacher = 'الكل';
 
 const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const safeUrl = u => /^https?:\/\//i.test(u) ? u : '#';
@@ -195,7 +177,8 @@ function showHome(){
     html += '<div class="sub-banner">' + (ART[s.id] || s.icon) + '</div>';
     html += '<div class="sub-info">';
     html += '<b>' + esc(s.name) + '</b>';
-    html += '<small>' + s.summaries.length + ' ملخص • ' + s.handouts.length + ' ملزمة</small>';
+    // هنا عرضنا عدد الملازم فقط
+    html += '<small>' + s.handouts.length + ' ملزمة</small>';
     html += '</div></div>';
   }
   html += '</div>';
@@ -205,23 +188,19 @@ function showHome(){
 function showSubject(s){
   titleEl.textContent = s.name;
   backBtn.style.display = 'block';
-  let html = `<div class="tabs">
-    <button class="tab ${tab==='summaries'?'on':''}" data-t="summaries">الملخصات</button>
-    <button class="tab ${tab==='handouts'?'on':''}" data-t="handouts">الملازم</button></div>`;
-  if(tab==='summaries'){
-    html += s.summaries.length ? s.summaries.map(x=>`<div class="card"><h3>${esc(x.title)}</h3><p>${esc(x.text)}</p></div>`).join('')
-                               : '<div class="empty">ما كو ملخصات بعد</div>';
-  } else {
-    const teachers = ['الكل', ...new Set(s.handouts.map(h=>h.teacher))];
-    if(teachers.length>2){
-      html += '<div class="chips">' + teachers.map(t=>`<button class="chip ${t===teacher?'on':''}" data-te="${esc(t)}">${esc(t)}</button>`).join('') + '</div>';
-    }
-    const list = s.handouts.filter(h => teacher==='الكل' || h.teacher===teacher);
-    html += list.length ? list.map(h=>`<div class="card"><h3>${esc(h.title)}</h3><div class="meta">الأستاذ: ${esc(h.teacher)}</div><a class="btn" href="${esc(safeUrl(h.url))}" target="_blank" rel="noopener">فتح / تحميل</a></div>`).join('')
-                        : '<div class="empty">ما كو ملازم بعد</div>';
+  
+  // شلنا التبويبات (tabs) وخلياها تعرض الملازم مباشرة
+  const teachers = ['الكل', ...new Set(s.handouts.map(h=>h.teacher))];
+  let html = '';
+  if(teachers.length>2){
+    html += '<div class="chips">' + teachers.map(t=>`<button class="chip ${t===teacher?'on':''}" data-te="${esc(t)}">${esc(t)}</button>`).join('') + '</div>';
   }
+  
+  const list = s.handouts.filter(h => teacher==='الكل' || h.teacher===teacher);
+  html += list.length ? list.map(h=>`<div class="card"><h3>${esc(h.title)}</h3><div class="meta">الأستاذ: ${esc(h.teacher)}</div><a class="btn" href="${esc(safeUrl(h.url))}" target="_blank" rel="noopener">فتح / تحميل</a></div>`).join('')
+                      : '<div class="empty">ما كو ملازم بعد</div>';
+  
   app.innerHTML = html;
-  app.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{tab=b.dataset.t;teacher='الكل';showSubject(s);});
   app.querySelectorAll('.chip').forEach(b=>b.onclick=()=>{teacher=b.dataset.te;showSubject(s);});
 }
 
@@ -230,4 +209,4 @@ window.addEventListener('hashchange', route);
 route();
 </script>
 </body>
-</html>
+  </html>
