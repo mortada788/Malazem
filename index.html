@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
@@ -6,33 +5,87 @@
 <meta name="theme-color" content="#1a73e8">
 <title>ملازم خامس علمي</title>
 <style>
-:root{--bg:#f4f6fb;--card:#fff;--text:#1d2433;--muted:#667085;--primary:#1a73e8;--border:#e3e7ef}
-@media (prefers-color-scheme:dark){:root{--bg:#10141c;--card:#1a202c;--text:#eef1f6;--muted:#9aa4b5;--border:#2a3242}}
+:root{
+  --bg:#eef4fa;
+  --card:rgba(255, 255, 255, 0.94);
+  --text:#1d2433;
+  --muted:#667085;
+  --primary:#1a73e8;
+  --border:#dce4f0;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#0f141e;
+    --card:rgba(26, 32, 44, 0.94);
+    --text:#eef1f6;
+    --muted:#9aa4b5;
+    --border:#2a3242;
+  }
+}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-body{margin:0;font-family:system-ui,"Segoe UI",Tahoma,sans-serif;background:var(--bg);color:var(--text);line-height:1.7}
-header{background:var(--primary);color:#fff;padding:14px 16px;position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:10px}
+body{
+  margin:0;
+  font-family:system-ui,"Segoe UI",Tahoma,sans-serif;
+  background-color:var(--bg);
+  background-image: url("data:image/svg+xml,%3Csvg width='140' height='140' viewBox='0 0 140 140' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%236082b6' stroke-width='1.5' stroke-opacity='0.14'%3E%3Ccircle cx='30' cy='30' r='12'/%3E%3Cellipse cx='30' cy='30' rx='22' ry='7' transform='rotate(30 30 30)'/%3E%3Cellipse cx='30' cy='30' rx='22' ry='7' transform='rotate(-30 30 30)'/%3E%3Cpath d='M95 15 L105 15 L105 28 L115 45 L85 45 L95 28 Z'/%3E%3Cpolygon points='30,90 48,120 12,120'/%3E%3Cpath d='M85 95 Q100 88 115 95 L115 120 Q100 113 85 120 Z M100 92 L100 117'/%3E%3Ccircle cx='70' cy='70' r='3'/%3E%3C/g%3E%3C/svg%3E");
+  color:var(--text);
+  line-height:1.7;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+}
+header{background:var(--primary);color:#fff;padding:14px 16px;position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:10px;box-shadow:0 2px 10px rgba(0,0,0,0.1)}
 header h1{font-size:18px;margin:0;flex:1}
-#back{background:none;border:0;color:#fff;font-size:24px;display:none;padding:0 4px}
-main{padding:16px;max-width:720px;margin:auto}
-input[type=search]{width:100%;padding:12px 14px;border-radius:12px;border:1px solid var(--border);background:var(--card);color:var(--text);font-size:16px;margin-bottom:14px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.subject{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px 10px;text-align:center;cursor:pointer;border-top:4px solid var(--c)}
-.subject .ic{font-size:34px}
-.subject b{display:block;margin-top:4px}
-.subject small{color:var(--muted)}
+#back{background:none;border:0;color:#fff;font-size:24px;display:none;padding:0 4px;cursor:pointer}
+main{padding:16px;max-width:720px;margin:auto;width:100%;flex:1}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+
+.subject{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:18px;
+  overflow:hidden;
+  text-align:center;
+  cursor:pointer;
+  border-top:5px solid var(--c);
+  box-shadow:0 4px 12px rgba(0,0,0,0.05);
+  transition:transform 0.15s ease, box-shadow 0.15s ease;
+  display:flex;
+  flex-direction:column;
+}
+.subject:active{transform:scale(0.97)}
+.sub-banner{
+  width:100%;
+  height:92px;
+  background:linear-gradient(135deg, color-mix(in srgb, var(--c) 14%, transparent), color-mix(in srgb, var(--c) 4%, transparent));
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:10px;
+  border-bottom:1px solid var(--border);
+}
+.sub-banner svg{
+  width:68px;
+  height:68px;
+  filter:drop-shadow(0 3px 5px rgba(0,0,0,0.08));
+}
+.sub-info{padding:12px 10px}
+.subject b{display:block;font-size:16px;margin-bottom:2px}
+.subject small{color:var(--muted);font-size:12.5px}
+
 .tabs{display:flex;gap:8px;margin-bottom:14px}
-.tab{flex:1;padding:10px;border-radius:10px;border:1px solid var(--border);background:var(--card);color:var(--text);font-size:15px}
-.tab.on{background:var(--primary);color:#fff;border-color:var(--primary)}
-.card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:14px;margin-bottom:12px}
-.card h3{margin:0 0 6px;font-size:16px}
+.tab{flex:1;padding:10px;border-radius:10px;border:1px solid var(--border);background:var(--card);color:var(--text);font-size:15px;cursor:pointer}
+.tab.on{background:var(--primary);color:#fff;border-color:var(--primary);font-weight:bold}
+.card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:14px;margin-bottom:12px;box-shadow:0 2px 8px rgba(0,0,0,0.04)}
+.card h3{margin:0 0 6px;font-size:16px;color:var(--primary)}
 .card p{margin:0;white-space:pre-wrap}
 .meta{color:var(--muted);font-size:13px;margin-bottom:8px}
-.btn{display:inline-block;background:var(--primary);color:#fff;text-decoration:none;padding:9px 16px;border-radius:10px;font-size:14px}
+.btn{display:inline-block;background:var(--primary);color:#fff;text-decoration:none;padding:9px 16px;border-radius:10px;font-size:14px;font-weight:500}
 .chips{display:flex;gap:6px;overflow-x:auto;margin-bottom:12px;padding-bottom:4px}
-.chip{white-space:nowrap;padding:6px 12px;border-radius:20px;border:1px solid var(--border);background:var(--card);color:var(--text);font-size:13px}
+.chip{white-space:nowrap;padding:6px 12px;border-radius:20px;border:1px solid var(--border);background:var(--card);color:var(--text);font-size:13px;cursor:pointer}
 .chip.on{background:var(--primary);color:#fff;border-color:var(--primary)}
-.empty{text-align:center;color:var(--muted);padding:30px 0}
-footer{text-align:center;color:var(--muted);font-size:12px;padding:20px}
+.empty{text-align:center;color:var(--muted);padding:30px 0;background:var(--card);border-radius:14px;border:1px dashed var(--border)}
+footer{text-align:center;color:var(--muted);font-size:12px;padding:24px 16px;font-weight:500;margin-top:auto}
 </style>
 </head>
 <body>
@@ -41,57 +94,87 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:20px}
   <h1 id="title">ملازم خامس علمي</h1>
 </header>
 <main id="app"></main>
-<footer>الملازم مرفوعة بإذن أصحابها</footer>
+<footer>تم صنع التطبيق بواسطة مرتضى واثق حساني</footer>
 
 <script>
-/* ============================================================
-   هنا تضيف محتواك. عدّل هذا الجزء فقط.
-   - summaries: الملخصات (عنوان + نص)
-   - handouts: الملازم (عنوان + اسم الأستاذ + رابط PDF)
-   رابط الملزمة: ارفع الـ PDF على Google Drive، خله "أي شخص لديه الرابط"،
-   وانسخ الرابط هنا.
-   ============================================================ */
+const ART = {
+  physics: `<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="10" fill="#1a73e8"/><ellipse cx="50" cy="50" rx="40" ry="14" fill="none" stroke="#1a73e8" stroke-width="3.5" transform="rotate(30 50 50)"/><ellipse cx="50" cy="50" rx="40" ry="14" fill="none" stroke="#4285f4" stroke-width="3.5" transform="rotate(-30 50 50)"/><ellipse cx="50" cy="50" rx="40" ry="14" fill="none" stroke="#0d47a1" stroke-width="3.5" transform="rotate(90 50 50)"/><circle cx="84" cy="30" r="4.5" fill="#ea4335"/><circle cx="16" cy="70" r="4.5" fill="#fbbc04"/></svg>`,
+  chemistry: `<svg viewBox="0 0 100 100"><path d="M40 18 H60 M44 18 V36 L24 76 C22 80 25 84 30 84 H70 C75 84 78 80 76 76 L56 36 V18" fill="none" stroke="#0f9d58" stroke-width="4" stroke-linejoin="round"/><path d="M31 64 L26 76 C25 78 27 81 30 81 H70 C73 81 75 78 74 76 L69 64 Z" fill="#34a853" opacity="0.8"/><circle cx="46" cy="72" r="3" fill="#fff"/><circle cx="56" cy="68" r="2.5" fill="#fff"/><circle cx="50" cy="10" r="3" fill="#0f9d58"/><circle cx="58" cy="7" r="2" fill="#34a853"/></svg>`,
+  biology: `<svg viewBox="0 0 100 100"><path d="M32 15 C32 40, 68 40, 68 50 C68 60, 32 60, 32 85" fill="none" stroke="#e8710a" stroke-width="4.5" stroke-linecap="round"/><path d="M68 15 C68 40, 32 40, 32 50 C32 60, 68 60, 68 85" fill="none" stroke="#fbbc04" stroke-width="4.5" stroke-linecap="round"/><line x1="36" y1="24" x2="64" y2="24" stroke="#e8710a" stroke-width="3"/><line x1="42" y1="36" x2="58" y2="36" stroke="#e8710a" stroke-width="3"/><line x1="42" y1="64" x2="58" y2="64" stroke="#e8710a" stroke-width="3"/><line x1="36" y1="76" x2="64" y2="76" stroke="#e8710a" stroke-width="3"/></svg>`,
+  math: `<svg viewBox="0 0 100 100"><polygon points="20,82 82,82 20,20" fill="#9334e6" opacity="0.18" stroke="#9334e6" stroke-width="4" stroke-linejoin="round"/><polygon points="30,72 56,72 30,46" fill="#fff" stroke="#9334e6" stroke-width="3"/><text x="62" y="42" font-family="serif" font-size="34" font-weight="bold" fill="#7b1fa2">π</text><line x1="20" y1="70" x2="26" y2="70" stroke="#9334e6" stroke-width="2.5"/><line x1="20" y1="58" x2="26" y2="58" stroke="#9334e6" stroke-width="2.5"/><line x1="20" y1="46" x2="26" y2="46" stroke="#9334e6" stroke-width="2.5"/></svg>`,
+  arabic: `<svg viewBox="0 0 100 100"><path d="M22 30 Q36 24 50 30 Q64 24 78 30 V74 Q64 68 50 74 Q36 68 22 74 Z" fill="#c5221f" opacity="0.15" stroke="#c5221f" stroke-width="3.5" stroke-linejoin="round"/><line x1="50" y1="30" x2="50" y2="74" stroke="#c5221f" stroke-width="3"/><path d="M62 62 L82 22 C74 22 66 30 62 44 Z" fill="#d93025"/><line x1="58" y1="68" x2="82" y2="22" stroke="#801313" stroke-width="2.5" stroke-linecap="round"/></svg>`,
+  english: `<svg viewBox="0 0 100 100"><rect x="18" y="24" width="64" height="52" rx="10" fill="#00838f" opacity="0.15" stroke="#00838f" stroke-width="3.5"/><text x="50" y="58" text-anchor="middle" font-family="sans-serif" font-size="26" font-weight="bold" fill="#006064">ABC</text><line x1="30" y1="67" x2="70" y2="67" stroke="#00838f" stroke-width="3" stroke-linecap="round"/></svg>`,
+  islamic: `<svg viewBox="0 0 100 100"><path d="M30 52 C30 34, 50 26, 50 18 C50 26, 70 34, 70 52 Z" fill="#5f6368" opacity="0.25" stroke="#455a64" stroke-width="3.5"/><rect x="26" y="52" width="48" height="30" rx="3" fill="#fff" stroke="#455a64" stroke-width="3.5"/><path d="M44 82 V66 C44 61, 56 61, 56 66 V82" fill="#455a64"/><path d="M50 10 A5 5 0 1 0 54 15 A4 4 0 1 1 50 10" fill="#f9ab00"/></svg>`
+};
+
 const DATA = [
   {
     id:"physics", name:"الفيزياء", icon:"⚛️", color:"#1a73e8",
     summaries:[
-      {title:" مثال: قانون نيوتن ", text:"هذا نص تجريبي. امسحه واكتب ملخصك هنا."}
+      { title: "ملخص فصل الحركة الدائرية والدورانية", text: "• السرعة الزاوية: هي المعدل الزمني للتغير في الإزاحة الزاوية وتقاس بـ (rad/s).\n• التعجيل الزوائي: المعدل الزمني للتغير في السرعة الزاوية.\n• العزم المدور: هو مقدار القوة المسببة للدوران ويقاس بـ (N.m).\n• المركز العطالي ومركز الكتلة." }
     ],
     handouts:[
-      {title:"مثال: ملزمة الفصل الأول", teacher:"اسم الأستاذ", url:"https://drive.google.com/"}
+      { title: "ملزمة الفيزياء", teacher: "عام", url: "Https://teraboxlink.com/s/1_V07xgYMiJpqFzxz6I8COw" }
     ]
   },
   {
     id:"chemistry", name:"الكيمياء", icon:"🧪", color:"#0f9d58",
-    summaries:[], handouts:[]
+    summaries:[
+      { title: "ملخص الثرموديناميك (الحرارة)", text: "• القانون الأول للثرموديناميك: الطاقة لا تفنى بل تستحدث وإنما تحول من شكل لآخر (ΔU = q + w).\n• الأنظام الكيميائية: النظام المفتوح، المغلق، والمعزول.\n• الحامض والقاعدة حسب مفاهيم برونستد-لوري وأرينيوس." }
+    ],
+    handouts:[
+      { title: "ملزمة الكيمياء", teacher: "عام", url: "Https://teraboxlink.com/s/1Ji0HiDOscURHNU6eKHi8Bg" }
+    ]
   },
   {
     id:"biology", name:"الأحياء", icon:"🧬", color:"#e8710a",
-    summaries:[], handouts:[]
+    summaries:[
+      { title: "ملخص علم الوراثة والخلية", text: "• الانقسام الاختزالي: يحدث في الخلايا التناسلية وينتج عنه خلايا أحادية المجموعة الكروموسومية (1n).\n• الأحياء المجهرية: تصنيف البكتيريا والفطريات.\n• التنسج والنسيج الطلائي في النباتات والحيوانات." }
+    ],
+    handouts:[
+      { title: "ملزمة الأحياء", teacher: "عام", url: "Https://teraboxlink.com/s/1_V07xgYMiJpqFzxz6I8COw" }
+    ]
   },
   {
     id:"math", name:"الرياضيات", icon:"📐", color:"#9334e6",
-    summaries:[], handouts:[]
+    summaries:[
+      { title: "ملخص المتجهات والغايات والدوال", text: "• المتجهات في المستوي الإحداثي وقانون الضرب القيزي والاتجاهي.\n• الغايات والاستمرارية للدوال الحقيقية.\n• التفاضل ومشتقات الدوال المثلثية والضمنية." }
+    ], 
+    handouts:[]
   },
   {
     id:"arabic", name:"اللغة العربية", icon:"📖", color:"#c5221f",
-    summaries:[], handouts:[]
+    summaries:[
+      { title: "ملخص القواعد (الاستثناء والبلاغة)", text: "• الاستثناء بـ (إلا، غير، سوى، خلا، عدا، حاشا).\n• أحكام المستثنى بـ (إلا): تام مثبت، تام منفي، مفرغ.\n• علم البلاغة: الجناس، التورية، وحسن التخلص." }
+    ],
+    handouts:[
+      { title: "ملزمة اللغة العربية", teacher: "عام", url: "Https://teraboxlink.com/s/1_V07xgYMiJpqFzxz6I8COw" }
+    ]
   },
   {
     id:"english", name:"اللغة الإنكليزية", icon:"🔤", color:"#00838f",
-    summaries:[], handouts:[]
+    summaries:[
+      { title: "ملخص قواعد وأزمنة الوحدة الأولى والثانية", text: "• الماضي البسيط (Past Simple) والماضي المستمر (Past Continuous) مع أدوات الربط (while, as, when, and).\n• استخدام Prefixes لتكوين المعاكسات (un-, in-, im-, ir-, il-).\n• التعبير عن التفضيل والاقتراح (Let's, Why not, Would you like)." }
+    ],
+    handouts:[
+      { title: "ملزمة اللغة الإنكليزية", teacher: "عام", url: "Https://teraboxlink.com/s/1aftxSaGzYGZe0FTPk3kV7g" }
+    ]
   },
   {
     id:"islamic", name:"التربية الإسلامية", icon:"🕌", color:"#5f6368",
-    summaries:[], handouts:[]
+    summaries:[
+      { title: "ملخص أحكام التجويد والحديث الشريف", text: "• أحكام النون السكنية والتنوين (الإظهار، الإدغام، الإقلاب، الإخفاء).\n• الحديث الشريف في (الحث على العمل وبر الوالدين).\n• العقيدة الإسلامية وأثرها في بناء المجتمع." }
+    ],
+    handouts:[
+      { title: "ملزمة التربية الإسلامية", teacher: "عام", url: "Https://teraboxlink.com/s/1NVKe6ijJ6WoQs21T_Tf6kw" }
+    ]
   }
 ];
-/* ================= نهاية الجزء الخاص بالمحتوى ================= */
 
 const app = document.getElementById('app');
 const titleEl = document.getElementById('title');
 const backBtn = document.getElementById('back');
-let tab = 'summaries', teacher = 'الكل', query = '';
+let tab = 'summaries', teacher = 'الكل';
 
 const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const safeUrl = u => /^https?:\/\//i.test(u) ? u : '#';
@@ -105,26 +188,18 @@ function route(){
 function showHome(){
   titleEl.textContent = 'ملازم خامس علمي';
   backBtn.style.display = 'none';
-  const q = query.trim();
-  let html = `<input type="search" id="q" placeholder="ابحث عن ملخص أو ملزمة أو أستاذ..." value="${esc(query)}">`;
-  if(q){
-    const hits = [];
-    DATA.forEach(s=>{
-      s.summaries.forEach(x=>{ if((x.title+x.text).includes(q)) hits.push({s,kind:'ملخص',x}); });
-      s.handouts.forEach(x=>{ if((x.title+x.teacher).includes(q)) hits.push({s,kind:'ملزمة',x}); });
-    });
-    html += hits.length ? hits.map(h=>`<div class="card" onclick="location.hash='${h.s.id}'"><div class="meta">${esc(h.s.name)} • ${h.kind}</div><h3>${esc(h.x.title)}</h3></div>`).join('')
-                        : '<div class="empty">ما لقيت نتائج</div>';
-  } else {
-    html += '<div class="grid">' + DATA.map(s=>`
-      <div class="subject" style="--c:${s.color}" onclick="location.hash='${s.id}'">
-        <div class="ic">${s.icon}</div><b>${esc(s.name)}</b>
-        <small>${s.summaries.length} ملخص • ${s.handouts.length} ملزمة</small>
-      </div>`).join('') + '</div>';
+  let html = '<div class="grid">';
+  for (let i = 0; i < DATA.length; i++) {
+    let s = DATA[i];
+    html += '<div class="subject" style="--c:' + s.color + '" onclick="location.hash=\'' + s.id + '\'">';
+    html += '<div class="sub-banner">' + (ART[s.id] || s.icon) + '</div>';
+    html += '<div class="sub-info">';
+    html += '<b>' + esc(s.name) + '</b>';
+    html += '<small>' + s.summaries.length + ' ملخص • ' + s.handouts.length + ' ملزمة</small>';
+    html += '</div></div>';
   }
+  html += '</div>';
   app.innerHTML = html;
-  const qi = document.getElementById('q');
-  qi.addEventListener('input', e=>{ query = e.target.value; const pos=qi.selectionStart; showHome(); const n=document.getElementById('q'); n.focus(); n.setSelectionRange(pos,pos); });
 }
 
 function showSubject(s){
