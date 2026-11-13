@@ -29,6 +29,7 @@
   .menu-card:active { transform: scale(0.98); }
   
   .card-summaries { background: linear-gradient(135deg, #1a73e8, #1557b0); }
+  .card-ai { background: linear-gradient(135deg, #9334e6, #6b21a8); } /* لون بنفسجي للـ AI */
   .card-support { background: linear-gradient(135deg, #0088cc, #005f8f); }
   
   .card-text { flex: 1; text-align: right; }
@@ -36,37 +37,12 @@
   .card-text p { margin: 0; font-size: 14px; opacity: 0.9; }
   .card-icon { font-size: 48px; margin-left: 15px; opacity: 0.8; }
 
-  /* تنسيق حاوية الصورة (تم تصغيرها شوي لتكون أنيقة) */
-  .gif-container {
-      margin-top: 20px;
-      display: flex;
-      justify-content: center;
-  }
-  
-  .gif-container img {
-      width: 65%; /* حجم متوسط */
-      max-width: 280px;
-      height: auto;
-      display: block;
-      border-radius: 16px;
-      box-shadow: 0 6px 15px rgba(0,0,0,0.15);
-  }
+  .gif-container { margin-top: 20px; display: flex; justify-content: center; }
+  .gif-container img { width: 65%; max-width: 280px; height: auto; display: block; border-radius: 16px; box-shadow: 0 6px 15px rgba(0,0,0,0.15); }
 
-  /* تنسيق العبارة اليومية */
-  .daily-quote {
-      margin-top: 20px;
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-right: 5px solid #0f9d58;
-      padding: 15px 20px;
-      border-radius: 12px;
-      text-align: center;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-      font-weight: 700;
-      font-size: 16px;
-      color: var(--text);
-  }
+  .daily-quote { margin-top: 20px; background: var(--card); border: 1px solid var(--line); border-right: 5px solid #0f9d58; padding: 15px 20px; border-radius: 12px; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.05); font-weight: 700; font-size: 16px; color: var(--text); }
 
+  /* بانر المدرسة */
   .school-banner { display: flex; align-items: center; background: linear-gradient(135deg, #0f9d58, #0b6b3a); border-radius: 20px; padding: 15px; margin-bottom: 20px; box-shadow: 0 8px 20px rgba(15, 157, 88, 0.3); color: #fff; gap: 15px; }
   .school-logo { width: 70px; height: 70px; background: #fff; border-radius: 50%; display: flex; justify-content: center; align-items: center; overflow: hidden; border: 3px solid rgba(255,255,255,0.8); flex-shrink: 0; }
   .school-logo img { width: 100%; height: 100%; object-fit: contain; padding: 5px; }
@@ -214,6 +190,15 @@ function showMainMenu(){
             <div class="card-icon">📖</div>
         </div>
 
+        <!-- صندوق الذكاء الاصطناعي الجديد -->
+        <a href="https://gemini.google.com/app" target="_blank" class="menu-card card-ai" style="text-decoration:none;">
+            <div class="card-text">
+                <h2>مساعد الذكاء الاصطناعي</h2>
+                <p>اسأل أي سؤال دراسي واحصل على إجابة فورية</p>
+            </div>
+            <div class="card-icon">🤖</div>
+        </a>
+
         <a href="https://t.me/mortada7799" target="_blank" class="menu-card card-support" style="text-decoration:none;">
             <div class="card-text">
                 <h2>للمساعدة</h2>
@@ -223,12 +208,10 @@ function showMainMenu(){
         </a>
     </div>
 
-    <!-- الصورة المتحركة (الرابط المحلي كما كان سابقاً) -->
     <div class="gif-container">
         <img src="ezgif-7138c0fd07f42e99.gif" alt="إعلان">
     </div>
 
-    <!-- العبارة اليومية -->
     <div class="daily-quote">
         ${currentQuote}
     </div>
