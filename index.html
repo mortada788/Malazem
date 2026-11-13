@@ -31,12 +31,30 @@
   .menu-card:active { transform: scale(0.98); }
   
   .card-summaries { background: linear-gradient(135deg, #1a73e8, #1557b0); }
-  .card-support { background: linear-gradient(135deg, #0088cc, #005f8f); } /* لون التليكرام */
+  .card-support { background: linear-gradient(135deg, #0088cc, #005f8f); }
   
   .card-text { flex: 1; text-align: right; }
   .card-text h2 { margin: 0 0 8px; font-size: 22px; font-weight: 800; }
   .card-text p { margin: 0; font-size: 14px; opacity: 0.9; }
   .card-icon { font-size: 48px; margin-left: 15px; opacity: 0.8; }
+
+  /* تنسيق حاوية الـ GIF */
+  .gif-container {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+      background: #000;
+  }
+  
+  .gif-container img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+  }
 
   /* بانر المدرسة */
   .school-banner {
@@ -168,7 +186,7 @@ function route(){
   }
 }
 
-// 1. الشاشة الرئيسية (صندوقين)
+// 1. الشاشة الرئيسية (صندوقين + الـ GIF)
 function showMainMenu(){
   titleEl.textContent = 'الرئيسية';
   headerIcon.textContent = '📚'; 
@@ -184,7 +202,6 @@ function showMainMenu(){
             <div class="card-icon">📖</div>
         </div>
 
-        <!-- صندوق المساعدة (التليكرام) - تم ربط اليوزر هنا -->
         <a href="https://t.me/mortada7799" target="_blank" class="menu-card card-support" style="text-decoration:none;">
             <div class="card-text">
                 <h2>للمساعدة</h2>
@@ -192,6 +209,11 @@ function showMainMenu(){
             </div>
             <div class="card-icon">💬</div>
         </a>
+    </div>
+
+    <!-- الـ GIF من GitHub -->
+    <div class="gif-container">
+        <img src="ezgif-7138c0fd07f42e99.gif" alt="إعلان" onerror="this.style.display='none'; this.parentElement.style.display='none';">
     </div>
   `;
   app.innerHTML = html;
@@ -256,4 +278,4 @@ window.addEventListener('hashchange', route);
 route();
 </script>
 </body>
-  </html>
+</html>
