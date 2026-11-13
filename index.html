@@ -107,48 +107,50 @@ document.addEventListener("DOMContentLoaded", function() {
     }, 5000); 
 });
 
-// بيانات التطبيق (بدون ملخصات)
+// بيانات التطبيق 
 const ART = { physics:'⚛️', chemistry:'🧪', biology:'🧬', math:'📐', arabic:'📖', english:'🔤', islamic:'🕌' };
 
 const DATA = [
   {
     id:"physics", name:"الفيزياء", icon:"⚛️", color:"#1a73e8",
     handouts:[
-      { title: "ملزمة الفيزياء", teacher: "عام", url: "https://teraboxlink.com/s/1_V07xgYMiJpqFzxz6I8COw" }
+      { title: "ملزمة الفيزياء", teacher: "علي الذهبي", url: "https://www.mediafire.com/file/ghwtazf3tfk9ghp/علي_الذهبي_الخامس_العلمي_2026+(1).pdf/file" }
     ]
   },
   {
     id:"chemistry", name:"الكيمياء", icon:"🧪", color:"#0f9d58",
     handouts:[
-      { title: "ملزمة الكيمياء", teacher: "عام", url: "https://teraboxlink.com/s/1Ji0HiDOscURHNU6eKHi8Bg" }
+      { title: "ملزمة الكيمياء", teacher: "حسين حمزة", url: "https://www.mediafire.com/file/8d0pt2eiwu75t17/الكيمياء_حسين_حمزة_الجزء_الاول_الجزء_الاول_2027.pdf/file" }
     ]
   },
   {
     id:"biology", name:"الأحياء", icon:"🧬", color:"#e8710a",
     handouts:[
-      { title: "ملزمة الأحياء", teacher: "عام", url: "https://teraboxlink.com/s/1_V07xgYMiJpqFzxz6I8COw" }
+      { title: "ملزمة الأحياء", teacher: "سجاد حمزة", url: "https://www.mediafire.com/file/g0ws2vqqypw1x0q/الاحياء_سجاد_حمزة_الخامس_العلمي_2027.pdf/file" }
     ]
   },
   {
     id:"math", name:"الرياضيات", icon:"📐", color:"#9334e6",
-    handouts:[]
+    handouts:[
+      { title: "ملزمة الرياضيات", teacher: "حيدر وليد", url: "https://www.mediafire.com/file/6rpkonchci69tgu/الرياضيات_حيدر_وليد_الجزء_الاول_الخامس_العلمي_2026(2)+(1).pdf/file" }
+    ]
   },
   {
     id:"arabic", name:"اللغة العربية", icon:"📖", color:"#c5221f",
     handouts:[
-      { title: "ملزمة اللغة العربية", teacher: "عام", url: "https://teraboxlink.com/s/1_V07xgYMiJpqFzxz6I8COw" }
+      { title: "ملزمة اللغة العربية", teacher: "سمر علي أحمد", url: "https://www.mediafire.com/file/p7rxsjuck2najrf/العربي_سمر_علي_احمد_الجزء_الاول_الخامس_الاعدادي_2026.pdf/file" }
     ]
   },
   {
     id:"english", name:"اللغة الإنكليزية", icon:"🔤", color:"#00838f",
     handouts:[
-      { title: "ملزمة اللغة الإنكليزية", teacher: "عام", url: "https://teraboxlink.com/s/1aftxSaGzYGZe0FTPk3kV7g" }
+      { title: "ملزمة اللغة الإنكليزية", teacher: "علي الغرابي", url: "https://www.mediafire.com/file/88myt3ywwspo4mi/علي_الغرابي_الخامس_العلمي_2026.pdf/file" }
     ]
   },
   {
     id:"islamic", name:"التربية الإسلامية", icon:"🕌", color:"#5f6368",
     handouts:[
-      { title: "ملزمة التربية الإسلامية", teacher: "عام", url: "https://teraboxlink.com/s/1NVKe6ijJ6WoQs21T_Tf6kw" }
+      { title: "ملزمة التربية الإسلامية", teacher: "ساجد العكيلي", url: "https://www.mediafire.com/file/xp1tzjwiv3jhqc1/الاسلامية_ساجد_العكيلي_الخامس_الاعدادي_2027.pdf/file" }
     ]
   }
 ];
@@ -177,7 +179,6 @@ function showHome(){
     html += '<div class="sub-banner">' + (ART[s.id] || s.icon) + '</div>';
     html += '<div class="sub-info">';
     html += '<b>' + esc(s.name) + '</b>';
-    // هنا عرضنا عدد الملازم فقط
     html += '<small>' + s.handouts.length + ' ملزمة</small>';
     html += '</div></div>';
   }
@@ -189,7 +190,6 @@ function showSubject(s){
   titleEl.textContent = s.name;
   backBtn.style.display = 'block';
   
-  // شلنا التبويبات (tabs) وخلياها تعرض الملازم مباشرة
   const teachers = ['الكل', ...new Set(s.handouts.map(h=>h.teacher))];
   let html = '';
   if(teachers.length>2){
@@ -197,7 +197,7 @@ function showSubject(s){
   }
   
   const list = s.handouts.filter(h => teacher==='الكل' || h.teacher===teacher);
-  html += list.length ? list.map(h=>`<div class="card"><h3>${esc(h.title)}</h3><div class="meta">الأستاذ: ${esc(h.teacher)}</div><a class="btn" href="${esc(safeUrl(h.url))}" target="_blank" rel="noopener">فتح / تحميل</a></div>`).join('')
+  html += list.length ? list.map(h=>`<div class="card"><h3>${esc(h.title)}</h3><div class="meta">الأستاذ: ${esc(h.teacher)}</div><a class="btn" href="${esc(safeUrl(h.url))}" target="_blank" rel="noopener">تحميل من ميديافاير 📥</a></div>`).join('')
                       : '<div class="empty">ما كو ملازم بعد</div>';
   
   app.innerHTML = html;
@@ -209,4 +209,4 @@ window.addEventListener('hashchange', route);
 route();
 </script>
 </body>
-  </html>
+</html>
