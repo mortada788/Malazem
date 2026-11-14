@@ -6,67 +6,19 @@
 <meta name="theme-color" content="#1a73e8">
 <title>ملخص مناهج خامس علمي</title>
 <style>
-  :root{--bg:#f4f6fb;--card:#fff;--text:#1d2433;--muted:#64748b;--primary:#1a73e8;--line:#e2e8f0;--radius:16px}
-  @media (prefers-color-scheme: dark){:root{--bg:#0f172a;--card:#1e293b;--text:#f1f5f9;--muted:#94a3b8;--line:#334155}}
+  :root{--card:rgba(255, 255, 255, 0.95);--text:#1d2433;--muted:#64748b;--primary:#1a73e8;--line:#e2e8f0;--radius:16px}
+  body.dark-mode { --card: rgba(30, 41, 59, 0.95); --text: #f1f5f9; --muted: #94a3b8; --line: #334155; }
   *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-  body{margin:0;font-family:system-ui,"Segoe UI",Tahoma,Arial,sans-serif;background:var(--bg);color:var(--text);padding-bottom:20px}
+  body { margin: 0; font-family: system-ui,"Segoe UI",Tahoma,Arial,sans-serif; color: var(--text); padding-bottom: 20px; transition: color 0.3s; background: linear-gradient(-45deg, #5b21b6, #7e22ce, #6d28d9, #4c1d95); background-size: 400% 400%; animation: gradientBG 15s ease infinite; position: relative; overflow-x: hidden; }
+  body.dark-mode { background: linear-gradient(-45deg, #2e1065, #3b0764, #1e1b4b, #0f172a); background-size: 400% 400%; animation: gradientBG 15s ease infinite; }
+  @keyframes gradientBG { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
   
-  header{background:var(--primary);color:#fff;padding:16px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:50;box-shadow:0 4px 12px rgba(0,0,0,.15)}
-  header h1{font-size:18px;margin:0;flex:1;font-weight:700}
-  .header-icon { width: 40px; height: 40px; background: rgba(255, 255, 255, 0.2); border-radius: 12px; display: flex; justify-content: center; align-items: center; font-size: 22px; }
-  #back{background:none;border:0;color:#fff;font-size:24px;cursor:pointer;padding:0 5px;display:none}
-  
-  main{padding:16px;max-width:720px;margin:auto}
-  .main-menu { display: flex; flex-direction: column; gap: 16px; margin-top: 10px; }
-  
-  .menu-card { display: flex; align-items: center; justify-content: space-between; padding: 25px 20px; border-radius: 20px; text-decoration: none; color: #fff; box-shadow: 0 8px 20px rgba(0,0,0,0.15); transition: transform 0.2s; cursor: pointer; }
-  .menu-card:active { transform: scale(0.98); }
-  
-  .card-summaries { background: linear-gradient(135deg, #1a73e8, #1557b0); }
-  .card-support { background: linear-gradient(135deg, #0088cc, #005f8f); }
-  
-  .card-text { flex: 1; text-align: right; }
-  .card-text h2 { margin: 0 0 8px; font-size: 22px; font-weight: 800; }
-  .card-text p { margin: 0; font-size: 14px; opacity: 0.9; }
-  .card-icon { font-size: 48px; margin-left: 15px; opacity: 0.8; }
-
-  .gif-container { margin-top: 20px; display: flex; justify-content: center; }
-  .gif-container img { width: 65%; max-width: 280px; height: auto; display: block; border-radius: 16px; box-shadow: 0 6px 15px rgba(0,0,0,0.15); }
-  .daily-quote { margin-top: 20px; background: var(--card); border: 1px solid var(--line); border-right: 5px solid #0f9d58; padding: 15px 20px; border-radius: 12px; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.05); font-weight: 700; font-size: 16px; color: var(--text); }
-
-  .school-banner { display: flex; align-items: center; background: linear-gradient(135deg, #0f9d58, #0b6b3a); border-radius: 20px; padding: 15px; margin-bottom: 20px; box-shadow: 0 8px 20px rgba(15, 157, 88, 0.3); color: #fff; gap: 15px; }
-  .school-logo { width: 70px; height: 70px; background: #fff; border-radius: 50%; display: flex; justify-content: center; align-items: center; overflow: hidden; border: 3px solid rgba(255,255,255,0.8); flex-shrink: 0; }
-  .school-logo img { width: 100%; height: 100%; object-fit: contain; padding: 5px; }
-  .school-info { flex: 1; }
-  .school-info h2 { margin: 0 0 5px 0; font-size: 20px; font-weight: 800; }
-  .school-info p { margin: 0; font-size: 13px; opacity: 0.9; }
-
-  .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px; margin-top: 16px;}
-  .subject{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;cursor:pointer;transition:transform .2s}
-  .subject:active{transform:scale(.97)}
-  .sub-banner{background:var(--c);color:#fff;height:70px;display:flex;align-items:center;justify-content:center;font-size:36px}
-  .sub-info{padding:12px}
-  .sub-info b{display:block;font-size:15px;margin-bottom:4px}
-  .sub-info small{color:var(--muted);font-size:12px}
-  
-  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px;margin-bottom:12px}
-  .card h3{margin:0 0 8px;font-size:16px}
-  .meta{color:var(--muted);font-size:13px;margin:8px 0 12px}
-  .btn{display:block;text-align:center;background:var(--primary);color:#fff;padding:10px;border-radius:10px;text-decoration:none;font-weight:bold;margin-top:10px}
-  
-  .qa-box { background: var(--card); border-right: 4px solid #e8710a; padding: 15px; border-radius: 8px; margin-top: 15px; margin-bottom: 15px; }
-  .qa-box h3 { color: #e8710a; margin-bottom: 15px; font-size: 18px; border-bottom: 1px solid var(--line); padding-bottom: 10px; }
-  .qa-item { margin-bottom: 12px; font-size: 14px; line-height: 1.6; border-bottom: 1px dashed var(--line); padding-bottom: 8px; }
-  .qa-item:last-child { border-bottom: none; }
-  .qa-item strong { color: var(--text); font-weight: bold; display: block; margin-bottom: 4px; }
-  .empty{text-align:center;color:var(--muted);padding:40px;font-size:15px}
-
   #splash-screen { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: linear-gradient(to right, #24243e, #302b63, #0f0c29); display: flex; justify-content: center; align-items: center; z-index: 9999; transition: opacity 0.8s ease, visibility 0.8s ease; overflow: hidden; }
   #splash-screen::before, #splash-screen::after { content: ''; position: absolute; border-radius: 50%; filter: blur(80px); z-index: -1; }
   #splash-screen::before { width: 300px; height: 300px; background: rgba(138, 43, 226, 0.4); top: -50px; right: -50px; animation: float 6s infinite alternate; }
   #splash-screen::after { width: 400px; height: 400px; background: rgba(65, 105, 225, 0.3); bottom: -100px; left: -100px; animation: float 8s infinite alternate-reverse; }
   .glass-container { text-align: center; padding: 50px 30px; border-radius: 24px; background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5); width: 85%; max-width: 350px; }
-  .welcome-text { font-family: system-ui, sans-serif; font-size: 36px; font-weight: 900; color: #fff; margin-bottom: 35px; opacity: 0; transform: scale(0.5); animation: popIn 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; text-shadow: 0 4px 15px rgba(138, 43, 226, 0.5); }
+  .welcome-text { font-family: system-ui; font-size: 36px; font-weight: 900; color: #fff; margin-bottom: 35px; opacity: 0; transform: scale(0.5); animation: popIn 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; text-shadow: 0 4px 15px rgba(138, 43, 226, 0.5); }
   .loading-bar-container { width: 100%; height: 6px; background: rgba(255, 255, 255, 0.1); border-radius: 10px; overflow: hidden; opacity: 0; animation: fadeIn 0.5s ease-out 1s forwards; }
   .loading-bar { width: 0%; height: 100%; background: linear-gradient(to right, #8a2be2, #4169e1); border-radius: 10px; animation: fillBar 3.5s ease-in-out 1s forwards; }
   @keyframes popIn { 0% { opacity: 0; transform: scale(0.5); } 100% { opacity: 1; transform: scale(1); } }
@@ -74,6 +26,90 @@
   @keyframes fillBar { 0% { width: 0%; } 100% { width: 100%; } }
   @keyframes float { 0% { transform: translateY(0) scale(1); } 100% { transform: translateY(30px) scale(1.1); } }
   .splash-hidden { opacity: 0; visibility: hidden; }
+  
+  #name-modal { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(5px); display: none; justify-content: center; align-items: center; z-index: 10000; }
+  .name-box { background: var(--card); padding: 30px 20px; border-radius: 20px; width: 85%; max-width: 350px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+  .name-box h2 { margin: 0 0 10px; color: var(--primary); }
+  .name-box p { margin: 0 0 20px; color: var(--muted); font-size: 14px; }
+  .name-box input { width: 100%; padding: 12px; border-radius: 10px; border: 1px solid var(--line); background: var(--bg); color: var(--text); font-size: 16px; margin-bottom: 15px; text-align: center; outline: none; }
+  .name-box button { width: 100%; padding: 12px; background: var(--primary); color: white; border: none; border-radius: 10px; font-size: 16px; font-weight: bold; cursor: pointer; }
+  
+  header{background:var(--primary);color:#fff;padding:16px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:50;box-shadow:0 4px 12px rgba(0,0,0,.15)}
+  header h1{font-size:18px;margin:0;flex:1;font-weight:700}
+  .header-icon { width: 40px; height: 40px; background: rgba(255, 255, 255, 0.2); border-radius: 12px; display: flex; justify-content: center; align-items: center; font-size: 22px; }
+  .header-btns { display: flex; gap: 10px; }
+  .header-btn { background: none; border: 0; color: #fff; font-size: 24px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+  #back{display:none}
+  
+  main{padding:16px;max-width:720px;margin:auto; position: relative; z-index: 10;}
+  .main-menu { display: flex; flex-direction: column; gap: 16px; margin-top: 10px; }
+  .points-card { background: linear-gradient(135deg, #f59e0b, #b45309); color: white; border-radius: 20px; padding: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; box-shadow: 0 8px 20px rgba(245, 158, 11, 0.3); margin-bottom: 16px; text-align: center; }
+  .points-card .welcome-text { font-size: 18px; font-weight: bold; margin-bottom: 10px; color: #fff;}
+  .points-card .points-val { font-size: 32px; font-weight: 900; margin: 5px 0; }
+  .points-card .rank-title { background: rgba(0,0,0,0.2); padding: 5px 15px; border-radius: 20px; font-weight: bold; font-size: 16px; }
+  
+  .menu-card { display: flex; align-items: center; justify-content: space-between; padding: 25px 20px; border-radius: 20px; text-decoration: none; color: #fff; box-shadow: 0 8px 20px rgba(0,0,0,0.15); transition: transform 0.2s; cursor: pointer; }
+  .menu-card:active { transform: scale(0.98); }
+  .card-summaries { background: linear-gradient(135deg, #1a73e8, #1557b0); }
+  .card-schedule { background: linear-gradient(135deg, #9334e6, #6b21a8); }
+  .card-support { background: linear-gradient(135deg, #0088cc, #005f8f); }
+  .card-text { flex: 1; text-align: right; }
+  .card-text h2 { margin: 0 0 8px; font-size: 22px; font-weight: 800; }
+  .card-text p { margin: 0; font-size: 14px; opacity: 0.9; }
+  .card-icon { font-size: 48px; margin-left: 15px; opacity: 0.8; }
+  
+  .gif-container { margin-top: 20px; display: flex; justify-content: center; }
+  .gif-container img { width: 100%; max-width: 100%; height: auto; display: block; border-radius: 16px; box-shadow: 0 6px 15px rgba(0,0,0,0.2); }
+  
+  .daily-quote { margin-top: 20px; background: var(--card); backdrop-filter: blur(10px); border: 1px solid var(--line); border-right: 5px solid #0f9d58; padding: 15px 20px; border-radius: 12px; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.05); font-weight: 700; font-size: 16px; color: var(--text); }
+  
+  .schedule-container { background: var(--card); backdrop-filter: blur(10px); border-radius: 16px; padding: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow-x: auto; }
+  .schedule-table { width: 100%; border-collapse: collapse; min-width: 500px; }
+  .schedule-table th, .schedule-table td { padding: 12px 8px; text-align: center; border: 1px solid var(--line); font-size: 14px; }
+  .schedule-table th { background: var(--primary); color: white; font-weight: bold; }
+  .schedule-table td { color: var(--text); }
+  .schedule-table td.subject-cell { font-weight: bold; background: rgba(26, 115, 232, 0.05); }
+  .schedule-table td.teacher-cell { font-size: 11px; color: var(--muted); }
+  
+  .school-banner { display: flex; align-items: center; background: linear-gradient(135deg, #0f9d58, #0b6b3a); border-radius: 20px; padding: 15px; margin-bottom: 20px; box-shadow: 0 8px 20px rgba(15, 157, 88, 0.3); color: #fff; gap: 15px; }
+  .school-logo { width: 70px; height: 70px; background: #fff; border-radius: 50%; display: flex; justify-content: center; align-items: center; overflow: hidden; border: 3px solid rgba(255,255,255,0.8); flex-shrink: 0; }
+  .school-logo img { width: 100%; height: 100%; object-fit: contain; padding: 5px; }
+  .school-info { flex: 1; }
+  .school-info h2 { margin: 0 0 5px 0; font-size: 20px; font-weight: 800; }
+  .school-info p { margin: 0; font-size: 13px; opacity: 0.9; }
+  
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px; margin-top: 16px;}
+  .subject{background:var(--card); backdrop-filter: blur(10px); border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;cursor:pointer;transition:transform .2s}
+  .subject:active{transform:scale(.97)}
+  .sub-banner{background:var(--c);color:#fff;height:70px;display:flex;align-items:center;justify-content:center;font-size:36px}
+  .sub-info{padding:12px}
+  .sub-info b{display:block;font-size:15px;margin-bottom:4px}
+  .sub-info small{color:var(--muted);font-size:12px}
+  
+  .card{background:var(--card); backdrop-filter: blur(10px); border:1px solid var(--line);border-radius:var(--radius);padding:16px;margin-bottom:12px}
+  .card h3{margin:0 0 8px;font-size:16px}
+  .meta{color:var(--muted);font-size:13px;margin:8px 0 12px}
+  .btn{display:block;text-align:center;background:var(--primary);color:#fff;padding:10px;border-radius:10px;text-decoration:none;font-weight:bold;margin-top:10px}
+  
+  .qa-box { background: var(--card); backdrop-filter: blur(10px); border-right: 4px solid #e8710a; padding: 15px; border-radius: 8px; margin-top: 15px; margin-bottom: 15px; }
+  .qa-box h3 { color: #e8710a; margin-bottom: 15px; font-size: 18px; border-bottom: 1px solid var(--line); padding-bottom: 10px; }
+  .qa-item { margin-bottom: 12px; font-size: 14px; line-height: 1.6; border-bottom: 1px dashed var(--line); padding-bottom: 8px; }
+  .qa-item:last-child { border-bottom: none; }
+  .qa-item strong { color: var(--text); font-weight: bold; display: block; margin-bottom: 4px; }
+  .empty{text-align:center;color:var(--muted);padding:40px;font-size:15px}
+  
+  .settings-card { background: var(--card); backdrop-filter: blur(10px); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; margin-bottom: 16px; }
+  .settings-item { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; border-bottom: 1px solid var(--line); }
+  .settings-item:last-child { border-bottom: none; }
+  .settings-item h3 { margin: 0; font-size: 16px; }
+  .settings-item p { margin: 5px 0 0; font-size: 14px; color: var(--muted); }
+  
+  .switch { position: relative; display: inline-block; width: 50px; height: 28px; }
+  .switch input { opacity: 0; width: 0; height: 0; }
+  .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 34px; }
+  .slider:before { position: absolute; content: ""; height: 20px; width: 20px; left: 4px; bottom: 4px; background-color: white; transition: .4s; border-radius: 50%; }
+  input:checked + .slider { background-color: var(--primary); }
+  input:checked + .slider:before { transform: translateX(22px); }
 </style>
 </head>
 <body>
@@ -87,44 +123,83 @@
     </div>
 </div>
 
+<div id="name-modal">
+    <div class="name-box">
+        <h2>أهلاً بك! 👋</h2>
+        <p>الرجاء إدخال اسمك للبدء</p>
+        <input type="text" id="student-name-input" placeholder="اسم المستخدم">
+        <button onclick="saveName()">حفظ ومتابعة</button>
+    </div>
+</div>
+
 <header>
-  <button id="back">↩</button>
+  <div class="header-btns"><button id="back" class="header-btn">↩</button></div>
   <div class="header-icon" id="header-icon">📚</div>
   <h1 id="title"></h1>
+  <button id="settings-btn" class="header-btn" onclick="location.hash='settings'">⚙️</button>
 </header>
 
 <main id="app"></main>
 
 <script>
-document.addEventListener("DOMContentLoaded", function() {
-    setTimeout(function() {
-        var splash = document.getElementById("splash-screen");
-        if (splash) {
-            splash.classList.add("splash-hidden");
-            setTimeout(function() { splash.remove(); }, 800); 
-        }
-    }, 5000); 
-});
+let points = parseInt(localStorage.getItem('userPoints')) || 0;
+let studentName = localStorage.getItem('studentName') || '';
+let lastVisit = localStorage.getItem('lastVisitDate');
+let today = new Date().toDateString();
+
+setTimeout(function() {
+    var splash = document.getElementById("splash-screen");
+    if (splash) { 
+        splash.classList.add("splash-hidden"); 
+        setTimeout(function() { splash.remove(); }, 800); 
+    }
+    if (!studentName) {
+        document.getElementById('name-modal').style.display = 'flex';
+    } else {
+        route();
+    }
+}, 5000); 
+
+if (lastVisit !== today) {
+    points += 10;
+    localStorage.setItem('userPoints', points);
+    localStorage.setItem('lastVisitDate', today);
+}
+
+function saveName() {
+    let input = document.getElementById('student-name-input').value.trim();
+    if (input === '') {
+        alert('الرجاء كتابة اسم المستخدم');
+        return;
+    }
+    localStorage.setItem('studentName', input);
+    studentName = input;
+    document.getElementById('name-modal').style.display = 'none';
+    route();
+}
+
+function getRank(pts) {
+    if (pts > 500) return { name: "ملك الملازم 👑", color: "#f59e0b" };
+    if (pts > 300) return { name: "طالب أسطوري 🏆", color: "#e11d48" };
+    if (pts > 200) return { name: "طالب متفوق 🏅", color: "#8b5cf6" };
+    if (pts > 100) return { name: "طالب ذكي 🧠", color: "#3b82f6" };
+    if (pts > 50)  return { name: "طالب مجتهد 📖", color: "#10b981" };
+    return { name: "طالب مبتدئ 🌱", color: "#64748b" };
+}
+let currentRank = getRank(points);
+
+if (localStorage.getItem('theme') === 'dark') { document.body.classList.add('dark-mode'); }
+
+function toggleTheme(isDark) {
+    if (isDark) { document.body.classList.add('dark-mode'); localStorage.setItem('theme', 'dark'); } 
+    else { document.body.classList.remove('dark-mode'); localStorage.setItem('theme', 'light'); }
+}
 
 const ART = { physics:'⚛️', chemistry:'🧪', biology:'🧬', math:'📐', arabic:'📖', english:'🔤', islamic:'🕌' };
-
-// هنا الأسئلة كاملة
-const BIO_QUESTIONS = [
-  "مهمات الدرس الأول: ما نوع التغذية في (الإنسان، النبات، الطلائعيات، الفطريات، البيوغدين.. الخ)؟ اشرح البلقعة الخلوية او الشرب الخلوي. عرف (الانتشار، النقل الفعال، الإخراج، الديدنيوم، الأميبا، التغذية الدمية، الغذاء).",
-  "مهمات الدرس الثاني: معادلة البناء الضوئي، تعريفه، مكوناته، نواتجه. موقع الكلوروفيل، وظيفته، موقع تفاعلات الضوء ونواتجه، موقع تفاعلات الظلام ونواتجه. اشرح تفاعل الضوء، اشرح تفاعل الظلام. تعريف البلاستيدة وموقعها، الكرانو، الكران، قرص الشايكويد وموقعه، غشاء الشايكويد ووظيفته، السدى (الحشوة) وموقعها. أشكال البلاستيدات وموقعها. انواع الكلوروفيل وطول الموجي الذي يمتصه، أطوال الموجي الذي يمتصه. علل عدم امتصاص اللون الأخضر؟",
-  "مهمات الدرس الثالث: تعريف الاصباغ المساعدة، لونها، بروتينية او دهنية. قارن بين الزانثوفيلات والفيوكوبيلينات، تكلم عن الزانثوفيلات، تكلم عن الفيوكوبيلينات. المواد الداخلة في البناء الضوئي. الماء كيف يدخل لنبات المائي وطحالب، كيف ينتقل، اين يصل، ما الكمية الممتصة. الماء كيف يدخل لنبات البري، كيف ينتقل، اين يصل. الماء لا يوجد في بكتريا الكبريت الأخضر بما يعوض. معادلة فان نيل الكيميائية غير مطلوبة.",
-  "تكملة الدرس الثالث: ثنائي اوكسيد الكربون من أي تركيز ينتقل إلى أي تركيز؟ العوامل المؤثرة في البناء الضوئي. الماء، ماذا يحدث إذا قل الماء؟ إذا قل الضغط الانتخابي في الخلايا الحارسة؟ ثنائي اوكسيد الكربون، مصادره، نسبته بالجو. الضوء، ما تأثيره على أوراق النبات العالية، تأثيره على الأوراق السفلى لنبات، لماذا ينعدم البناء الضوئي عند طول موجي للون الأخضر؟، لماذا يقل عند اللون البرتقالي والاصفر؟ يكون أعلى معدل للبناء الضوئي عند طول موجي؟ تهوية التربة، لماذا تتم تهوية التربة؟ درجة الحرارة، معدل للبناء الضوئي عند درجة حرارة اقل ١٠ يحدث في؟ درجة الحرارة ٨٠ وأكثر هي المثلى لطحالب الينابيع الحارة، ما أفضل درجة حرارة للبناء الضوئي. الأمراض النباتية غير مطلوبة. أملاح التربة، على ماذا يؤثر نقص الحديد والمغنيسيوم؟، يتأثر بناء (أ) وديايلوز ثنائي الفوسفات عند نقصه؟، نقص المغنيز يؤثر على؟ العوامل الخارجية، مثل الدخان يغلق الثغور. عوامل الداخلية، مثل تركيب الورقة ويشمل عدد البلاستيدات فيها، كمية الكلوروفيل، سمك النصل، الخ.",
-  "تكملة الدرس الرابع: البناء الكيميائي، المقارنة بين البكتيريا، موقع البكتيريا، وظيفتها، الاكسدة، تعريف البكتيريا. الايثل الغذائي، تعريفه، مكوناته الأربعة بتسلسل. الهضم في الحيوانات. الهضم بطريقة مباشرة. تعريفه، يحدث في الطفيليات الامعاء والدم، ما طريقة تغذية الدميع؟ ما طريقة تغذية الخفاش الماص للدم؟ التغذية على الهائمات. تعريف الهائمات، لماذا لا تقاوم تيارات الماء العالية؟ اين توجد الهائمات؟ التغذية بواسطة الترشيح، تحدث عبر تراكيب جسمية كما في الدميع، حوت البالين، الرخويات ثنائية الصدفة... الخ. وتحدث أيضا عبر طبقة مخاطية تلتصق فيها كما في حيوان؟. التغذية بواسطة الترسيب كما في الديدان الحلقية، ما هي المواد المترسبة في قاع المحيط تتغذى عليها الديدان الحلقية؟ على ماذا تتغذى الديدان الحلقية؟ ما نوع التغذية في القشريات؟ في الدميع؟ في حوت البالين؟ الديدان الحلقية؟ رخويات ثنائية الصدفة؟ الخ.",
-  "تكملة الدرس الرابع: التغذية على كتل الطعام من خلال تحورات أربعة، تحورات القشريات وشرحها، تحورات الحشرات وشرحها عددها، وظائفها، النيرس تعريفه، وظيفة البلعوم، المفترسات وظيفة الأطراف الأمامية. الأسنان في ثدييات، عدد انواعها، وظائفها، تحورات الأسنان في القواطع وشرحها والانياب وشرحها وطواحن البقر والحصان وشرحها. التغذية على السوائل، طفيلي خارجي اشرحها، مثال عليها، طفيلي داخلي اشرحها، مثال عليها. الهضم داخلي اشرحه، اين يحدث، في اي حيوان، نوع الطعام صغير أو كبير. الهضم الخارجي، اشرحه، في اي حيوان، نوع الطعام. حيوان يحدث فيه هضم خارجي وداخلي؟",
-  "مهمات الدرس الخامس: منطقة التوصيل، البلعوم وظيفته، في اي كائن؟ المدريء، الحويصلة ووظائفها الثلاثة، موقعها، تعريفها. منطقة الطحن والهضم انواع المعدة ثلاثة، في الطيور، تركيبها نسيج ضام مدعم، وظيفتها طحن. المعدة في آكلات اللحوم والأعشاب، تركيبها تركيب عضلي، وظيفتها انتاج انزيمات، والـ HCL، ما وظائف الـ HCL. المعدة في الإنسان، انواع الخلايا الجدارية ورئيسة، الرئيسة رينين وظيفته وموقعه وبيبسين وظيفته وموقعه، الجدارية HCL وظيفته وموقعه. منطقة الهضم النهائي والامتصاص، طول الامعاء، نوعين، في اي كائن، الصمام الحلزوني موقعه وظيفته تعريفه، الزغابات موقعها وظيفتها تعريفها، زغيبات موقعها وظيفتها تعريفها. العصارة البنكرياسية كميتها باليوم، ٥ انزيمات، وظائفها. عصارة الصفراء، موقع إنتاجها، موقع افرازها، موقع خزنها، موقع صبها، وظيفتها، تركيبها، لماذا البراز أصفر اللون؟ وظائف الكبد ٧. وظائف الأمعاء الدقيقة ٣، تمتص الكهروهيدرات... الخ، تمتص البروتينات... الخ، الدهون لا تمتص... الخ.",
-  "تكملة الدرس الخامس: القناة الهضمية غير المكتملة، في اي حيوان؟ اين تبدأ واين تنتهي؟ ما غذاء البلاناريا؟ مكونات قناة البلاناريا؟ نوع الهضم في البلاناريا؟ القناة المكتملة، في اي حيوان؟ ما هو غذاء دودة الأرض؟ اين تبدأ واين تنتهي؟ مكونات قناة دودة الأرض؟ الحوصلة تعريفها موقعها وظيفتها؟ القانصة تعريفها موقعها وظيفتها؟ التغلوسول تعريفها موقعها وظيفتها؟ نوع الهضم في القناة؟ الحركة في الأمعاء ثلاث انواع، تجويف حقيقي (انقباض وانبساط)، تجويف كاذب (ببواسطة الاهداب)، كلا الطريقتين (انقباض وانبساط + الاهداب). ميزة الحركة دودية؟ تشريح القناة. منطقة استقبال الغذاء، الفم، الجوف الفمي وملحقاته، الاميليز وظيفته موقعه، لماذا لا يعمل في المعدة؟",
-  "تكملة الدرس الأخير من الفصل الأول: مهمات منطقة امتصاص الماء، ثلاث انواع، في الطيور والزواحف، تتمثل بماذا؟ ما وظيفة فتحة المجمع. في الحشرات ذات المناطق الجافة، تتمثل بماذا؟ ما وظيفة غدد المستقيم. القولون في الإنسان، ما وظيفة البكتيريا النافعة؟ الفيتامينات K و B ما موقعها؟ ما نسبتها؟ المتطلبات الغذائية. الطاقة ومصدرها، الوظيفة والتركيب ومصدرها. الكروهيدرات، مصدرها، إلى ماذا تتحول بعد الهضم؟ انواعها، الذائبة مثال عليها؟ وظيفتها؟، غير الذائبة، مثال عليها؟، وظيفتها؟، ارتفاع الالياف في الطعام؟ البروتينات، مصدرها مشبع؟ غير مشبع؟، ٢٠ حامض اميني توزيعها؟، الدهون، متمثله بماذا؟ كم حامض دهني يحتاج الإنسان؟ اوميكا ٣ موقعه؟ وظيفته؟ لماذا سكان الاسكيمو لا يصابون بأمراض القلب؟ الفيتامينات، وظيفتها؟ المعادن غير مطلوبة."
-];
-
 const DATA = [
   { id:"physics", name:"الفيزياء", icon:"⚛️", color:"#1a73e8", handouts:[{ title: "ملزمة الفيزياء", teacher: "علي الذهبي", url: "https://www.mediafire.com/file/ghwtazf3tfk9ghp/علي_الذهبي_الخامس_العلمي_2026+(1).pdf/file" }] },
   { id:"chemistry", name:"الكيمياء", icon:"🧪", color:"#0f9d58", handouts:[{ title: "ملزمة الكيمياء", teacher: "حسين حمزة", url: "https://www.mediafire.com/file/8d0pt2eiwu75t17/الكيمياء_حسين_حمزة_الجزء_الاول_الجزء_الاول_2027.pdf/file" }] },
-  { id:"biology", name:"الأحياء", icon:"🧬", color:"#e8710a", handouts:[{ title: "ملزمة الأحياء", teacher: "سجاد حمزة", url: "https://www.mediafire.com/file/g0ws2vqqypw1x0q/الاحياء_سجاد_حمزة_الخامس_العلمي_2027.pdf/file" }], questions: BIO_QUESTIONS },
+  { id:"biology", name:"الأحياء", icon:"🧬", color:"#e8710a", handouts:[{ title: "ملزمة الأحياء", teacher: "سجاد حمزة", url: "https://www.mediafire.com/file/g0ws2vqqypw1x0q/الاحياء_سجاد_حمزة_الخامس_العلمي_2027.pdf/file" }], questions: ["مهمات الدرس الأول...", "مهمات الدرس الثاني..."] },
   { id:"math", name:"الرياضيات", icon:"📐", color:"#9334e6", handouts:[{ title: "ملزمة الرياضيات", teacher: "حيدر وليد", url: "https://www.mediafire.com/file/6rpkonchci69tgu/الرياضيات_حيدر_وليد_الجزء_الاول_الخامس_العلمي_2026(2)+(1).pdf/file" }] },
   { id:"arabic", name:"اللغة العربية", icon:"📖", color:"#c5221f", handouts:[{ title: "ملزمة اللغة العربية", teacher: "سمر علي أحمد", url: "https://www.mediafire.com/file/p7rxsjuck2najrf/العربي_سمر_علي_احمد_الجزء_الاول_الخامس_الاعدادي_2026.pdf/file" }] },
   { id:"english", name:"اللغة الإنكليزية", icon:"🔤", color:"#00838f", handouts:[{ title: "ملزمة اللغة الإنكليزية", teacher: "علي الغرابي", url: "https://www.mediafire.com/file/88myt3ywwspo4mi/علي_الغرابي_الخامس_العلمي_2026.pdf/file" }] },
@@ -136,12 +211,15 @@ const app = document.getElementById('app');
 const titleEl = document.getElementById('title');
 const backBtn = document.getElementById('back');
 const headerIcon = document.getElementById('header-icon');
+const settingsBtn = document.getElementById('settings-btn');
 const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const safeUrl = u => /^https?:\/\//i.test(u) ? u : '#';
 
 function route(){
   const hash = location.hash.slice(1);
   if (hash === 'summaries') { showSummariesPage(); } 
+  else if (hash === 'settings') { showSettingsPage(); }
+  else if (hash === 'schedule') { showSchedulePage(); }
   else if (hash === '') { showMainMenu(); } 
   else {
       const sub = DATA.find(s => s.id === hash);
@@ -154,20 +232,80 @@ function showMainMenu(){
   titleEl.textContent = 'الرئيسية';
   headerIcon.textContent = '📚'; 
   backBtn.style.display = 'none';
+  settingsBtn.style.display = 'block';
   const dayOfMonth = new Date().getDate();
   const currentQuote = DAILY_QUOTES[dayOfMonth % DAILY_QUOTES.length];
   
   let html = `
+    <div class="points-card">
+        <div class="welcome-text">أهلاً بك يا ${studentName}</div>
+        <div class="points-val">${points} ⭐</div>
+        <div class="rank-title" style="color: ${currentRank.color}; border: 1px solid ${currentRank.color};">${currentRank.name}</div>
+    </div>
+
     <div class="main-menu">
         <div class="menu-card card-summaries" onclick="location.hash='summaries'">
             <div class="card-text"><h2>ملخص مناهج خامس علمي</h2><p>اضغط للدخول إلى المواد الدراسية</p></div><div class="card-icon">📖</div>
+        </div>
+        <div class="menu-card card-schedule" onclick="location.hash='schedule'">
+            <div class="card-text"><h2>الجدول الدراسي</h2><p>جدول الحصص الأسبوعي</p></div><div class="card-icon">📅</div>
         </div>
         <a href="https://t.me/mortada7799" target="_blank" class="menu-card card-support" style="text-decoration:none;">
             <div class="card-text"><h2>للمساعدة</h2><p>تواصل معنا عبر التليكرام</p></div><div class="card-icon">💬</div>
         </a>
     </div>
-    <div class="gif-container"><img src="ezgif-7138c0fd07f42e99.gif" alt="إعلان"></div>
+
+    <div class="gif-container">
+        <img src="ezgif-7138c0fd07f42e99.gif" alt="إعلان">
+    </div>
+
     <div class="daily-quote">${currentQuote}</div>
+  `;
+  app.innerHTML = html;
+}
+
+function showSchedulePage(){
+  titleEl.textContent = 'الجدول الدراسي';
+  headerIcon.textContent = '📅';
+  backBtn.style.display = 'block';
+  settingsBtn.style.display = 'none';
+
+  const scheduleData = [
+    { day: "الأحد", s1: "E", t1: "مقداد", s2: "رياضة", t2: "خليل", s3: "عربي", t3: "حسين", s4: "E", t4: "مقداد", s5: "رياضيات", t5: "مرتضى", s6: "فيزياء", t6: "محمد سالم" },
+    { day: "الاثنين", s1: "رياضيات", t1: "مرتضى", s2: "كيمياء", t2: "عقيل", s3: "أحياء", t3: "زياد", s4: "عربي", t4: "حسين", s5: "E", t5: "مقداد", s6: "رياضة", t6: "خليل" },
+    { day: "الثلاثاء", s1: "أحياء", t1: "زياد", s2: "رياضيات", t2: "مرتضى", s3: "فيزياء", t3: "محمد سالم", s4: "فنية", t4: "أحمد حسين", s5: "إسلامية", t5: "أمير هاشم", s6: "عربي", t6: "حسين" },
+    { day: "الأربعاء", s1: "عربي", t1: "حسين", s2: "كيمياء", t2: "عقيل", s3: "إسلامية", t3: "أمير هاشم", s4: "فنية", t4: "أحمد حسين", s5: "رياضيات", t5: "مرتضى", s6: "E", t6: "مقداد" },
+    { day: "الخميس", s1: "كيمياء", t1: "عقيل", s2: "فيزياء", t2: "محمد سالم", s3: "رياضيات", t3: "مرتضى", s4: "أحياء", t4: "زياد", s5: "E", t5: "مقداد", s6: "E", t6: "مقداد" }
+  ];
+
+  let html = `<div class="schedule-container"><table class="schedule-table"><thead><tr><th>اليوم</th><th>الحصة 1</th><th>الحصة 2</th><th>الحصة 3</th><th>الحصة 4</th><th>الحصة 5</th><th>الحصة 6</th></tr></thead><tbody>`;
+  scheduleData.forEach(row => {
+    html += `<tr><td style="font-weight:bold; background:var(--primary); color:white;">${row.day}</td><td class="subject-cell">${row.s1}<br><span class="teacher-cell">${row.t1}</span></td><td class="subject-cell">${row.s2}<br><span class="teacher-cell">${row.t2}</span></td><td class="subject-cell">${row.s3}<br><span class="teacher-cell">${row.t3}</span></td><td class="subject-cell">${row.s4}<br><span class="teacher-cell">${row.t4}</span></td><td class="subject-cell">${row.s5}<br><span class="teacher-cell">${row.t5}</span></td><td class="subject-cell">${row.s6}<br><span class="teacher-cell">${row.t6}</span></td></tr>`;
+  });
+  html += `</tbody></table></div>`;
+  app.innerHTML = html;
+}
+
+function showSettingsPage(){
+  titleEl.textContent = 'الإعدادات';
+  headerIcon.textContent = '⚙️';
+  backBtn.style.display = 'block';
+  settingsBtn.style.display = 'none';
+  let isDark = localStorage.getItem('theme') === 'dark';
+
+  let html = `
+    <div class="settings-card">
+        <div class="settings-item">
+            <div><h3>الوضع الليلي</h3><p>تحويل ألوان التطبيق للوضع الداكن</p></div>
+            <label class="switch"><input type="checkbox" id="theme-toggle" ${isDark ? 'checked' : ''} onchange="toggleTheme(this.checked)"><span class="slider"></span></label>
+        </div>
+    </div>
+
+    <div class="settings-card">
+        <div class="settings-item">
+            <div><h3>معلومات التطبيق</h3><p>تطبيق ملخص مناهج خامس علمي</p><p>إصدار: 2.0.0</p><p>صُنع بواسطة: مرتضى</p><p>برعاية: إعدادية المثابرون للبنين</p></div>
+        </div>
+    </div>
   `;
   app.innerHTML = html;
 }
@@ -176,6 +314,7 @@ function showSummariesPage(){
   titleEl.textContent = 'ملخص مناهج خامس';
   headerIcon.textContent = '📖';
   backBtn.style.display = 'block';
+  settingsBtn.style.display = 'none';
   let html = `<div class="school-banner"><div class="school-logo"><img src="logo.png" onerror="this.style.display='none'; this.parentElement.innerHTML='🏫';"></div><div class="school-info"><h2>مثابرون</h2><p>إعدادية المثابرون للبنين</p></div></div>`;
   html += '<div class="grid">';
   for (let i = 0; i < DATA.length; i++) {
@@ -190,6 +329,7 @@ function showSubject(s){
   titleEl.textContent = s.name;
   backBtn.style.display = 'block';
   headerIcon.textContent = (ART[s.id] || s.icon);
+  settingsBtn.style.display = 'none';
   let html = '';
   const list = s.handouts;
   html += list.length ? list.map(h=>`<div class="card"><h3>${esc(h.title)}</h3><div class="meta">الأستاذ: ${esc(h.teacher)}</div><a class="btn" href="${esc(safeUrl(h.url))}" target="_blank" rel="noopener">تحميل من ميديافاير 📥</a></div>`).join('') : '<div class="empty">ما كو ملازم بعد</div>';
@@ -200,8 +340,8 @@ function showSubject(s){
 }
 
 backBtn.onclick = () => history.back();
-window.addEventListener('hashchange', route);
+window.addEventListener("hashchange", route);
 route();
 </script>
 </body>
-</html>
+  </html>
