@@ -1,4 +1,4 @@
-const CACHE = 'malazem-v6';
+const CACHE = 'malazem-v7';
 const FILES = ['./', 'index.html', 'manifest.json', 'icon-192.png', 'icon-512.png'];
 
 self.addEventListener('install', e => {
